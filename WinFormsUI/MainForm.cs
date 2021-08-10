@@ -264,7 +264,7 @@ namespace WinFormsUI
             RefreshList();
         }
 
-        private void lb_DoubleClick(object sender, MouseEventArgs e)
+        private void lb_DoubleClick(object sender, EventArgs e)
         {
             _listPosition = lbTransactions.SelectedIndex;
 
