@@ -16,7 +16,7 @@ namespace Core.Tests
         public void Import()
         {
             var t1Json = File.ReadAllText(Directory.GetCurrentDirectory() + t1File);
-            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), t1Json);
+            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), Enumerable.Empty<Transaction>());
             State.Instance.Transactions.Should().HaveCount(2);
         }
 
@@ -44,7 +44,7 @@ namespace Core.Tests
         {
             var t1 = State.Instance.SaveTransactionsToJson();
             var oldState = State.Instance;
-            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), t1);
+            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), Enumerable.Empty<Transaction>());
 
             State.Instance.Transactions.Should().BeEquivalentTo(oldState.Transactions);
         }
