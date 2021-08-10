@@ -112,10 +112,5 @@ namespace Core
         {
             return JsonConvert.SerializeObject(state.Transactions, Formatting.Indented);
         }
-
-        public static IEnumerable<Transaction> ParseTransactions(string transactionsJson) =>
-            string.IsNullOrWhiteSpace(transactionsJson)
-                ? new List<Transaction>()
-                : JsonConvert.DeserializeObject<ICollection<Transaction>>(transactionsJson);
     }
 }

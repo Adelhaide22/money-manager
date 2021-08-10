@@ -41,31 +41,12 @@ namespace Core
             return JsonConvert.SerializeObject(State.Instance.Categories.Where(c => c is CompositeCategory), Formatting.Indented);
         }
 
-        public static void LoadCategories(string regexCategoriesFileName, string autoCategoriesFileName, string compositeCategoriesFileName)
+        public static void LoadCategories(RegexCategory[] regex, AutoCategory[] auto, CompositeCategory[] composite)
         {
-            var regex = LoadRegex(regexCategoriesFileName);
-            var auto = LoadAuto(autoCategoriesFileName);
-            var composite = LoadComposite(compositeCategoriesFileName);
-
             State.Instance = new State(regex.Cast<Category>().Concat(auto).Concat(composite).Concat(State.Instance.Categories).ToHashSet(), State.Instance.Transactions.ToHashSet());
         }
 
-        public static IEnumerable<RegexCategory> LoadRegex(string regexCategoriesJson) =>
-            string.IsNullOrWhiteSpace(regexCategoriesJson)
-                ? Array.Empty<RegexCategory>()
-                : JsonConvert.DeserializeObject<RegexCategory[]>(regexCategoriesJson);
-
-        public static IEnumerable<AutoCategory> LoadAuto(string autoCategoriesJson) =>
-            string.IsNullOrWhiteSpace(autoCategoriesJson)
-                ? Array.Empty<AutoCategory>()
-                : JsonConvert.DeserializeObject<AutoCategory[]>(autoCategoriesJson);
-
-        public static IEnumerable<CompositeCategory> LoadComposite(string compositeCategoriesJson) =>
-            string.IsNullOrWhiteSpace(compositeCategoriesJson)
-                ? Array.Empty<CompositeCategory>()
-                : JsonConvert.DeserializeObject<CompositeCategory[]>(compositeCategoriesJson);
-
-        public static void LoadTransactions(IEnumerable<(string key, Stream stream)> files, string transactionsJson)
+        public static void LoadTransactions(IEnumerable<(string key, Stream stream)> files, IEnumerable<Transaction> modifiedTransactions)
         {
             var newTransactions = new List<Transaction>();
             foreach (var (key, stream) in files)
@@ -74,7 +55,7 @@ namespace Core
             }
 
             var transactions = new List<Transaction>();
-            transactions.AddRange(StateHelper.ParseTransactions(transactionsJson));
+            transactions.AddRange(modifiedTransactions);
             transactions.AddRange(newTransactions);
             transactions.AddRange(State.Instance.Transactions);
 

@@ -19,6 +19,7 @@ namespace WinFormsUI
 
         public MainForm() => InitializeComponent();
         private event Action OnFilteringUpdated = () => { };
+        private IRepository repository;
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -45,19 +46,21 @@ namespace WinFormsUI
             dateTimePickerStart.Value = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             dateTimePickerEnd.Value = DateTime.Now.Date;
 
+            repository = new Repository();
+
             LoadCategories();
             LoadTransactions();
 
             OnFilteringUpdated += RefreshList;
             OnFilteringUpdated += RefreshChart;
             OnFilteringUpdated += RestoreScrollPosition;
-            State.OnStateChanged += FileManager.SaveUpdatedTransactions;
+            State.OnStateChanged += repository.SaveUpdatedTransactions;
             State.OnStateChanged += RefreshCategories;
             State.OnStateChanged += RefreshList;
             State.OnStateChanged += RefreshChart;
 
-            FileManager.SaveUpdatedTransactions();
-            FileManager.SaveAutoCategoriesToFile();           
+            repository.SaveUpdatedTransactions();
+            repository.SaveAutoCategoriesToFile();           
             
             RefreshCategories();
             RefreshList();
@@ -71,20 +74,20 @@ namespace WinFormsUI
 
         private void LoadCategories()
         {
-            var regexCategoriesJson = FileManager.GetRegexCategories();
-            var autoCategoriesJson = FileManager.GetAutoCategories();
-            var compositeCategoriesJson = FileManager.GetCompositeCategories();
+            var regexCategories = repository.GetRegexCategories();
+            var autoCategories = repository.GetAutoCategories();
+            var compositeCategories = repository.GetCompositeCategories();
 
-            StateManager.LoadCategories(regexCategoriesJson, autoCategoriesJson, compositeCategoriesJson);
+            StateManager.LoadCategories(regexCategories, autoCategories, compositeCategories);
         }
         
         private void LoadTransactions()
         {
-            var filesUsb = FileManager.GetUsbFiles();
-            var filesPb = FileManager.GetPbFiles();
-            var filesKb = FileManager.GetKbFiles();
+            var filesUsb = repository.GetUsbFiles();
+            var filesPb = repository.GetPbFiles();
+            var filesKb = repository.GetKbFiles();
 
-            var modifiedTransactions = FileManager.GetTransactions();
+            var modifiedTransactions = repository.GetTransactions();
 
             StateManager.LoadTransactions(filesUsb.Concat(filesPb).Concat(filesKb), modifiedTransactions);
         }
@@ -101,7 +104,7 @@ namespace WinFormsUI
             clbCategories.Items.Clear();
 
             _orderedCategories = State.Instance.Categories
-                .OrderBy(CategoriesExtensions.CategoriesOrederer)
+                .OrderBy(c => c, new CategoriesOrderer())
                 .ToArray();
             
             string categoryWithPrefix = string.Empty;
