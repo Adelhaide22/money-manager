@@ -89,7 +89,7 @@ namespace WinFormsUI
 
             var modifiedTransactions = repository.GetTransactions();
 
-            StateManager.LoadTransactions(filesUsb.Concat(filesPb).Concat(filesKb), modifiedTransactions);
+            StateManager.LoadTransactions(filesUsb.Concat(filesPb).Concat(filesKb), modifiedTransactions); // todo to repository
         }
 
         private void RefreshCategories()
