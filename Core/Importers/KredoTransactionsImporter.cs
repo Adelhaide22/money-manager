@@ -36,6 +36,9 @@ namespace Core.Importers
                     var actualText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i + 1), extractionStrategy)
                         .Split("\n").ToList();
 
+
+                    actualText = actualText.TakeWhile(s => s != "Заблоковані операції").ToList();
+
                     actualText = actualText.Skip(13).ToList();
                     if (i == 0)
                     {
