@@ -103,7 +103,7 @@ namespace WinFormsUI
             this.Controls.Add(this.txtboxDescription);
             this.Controls.Add(this.btnSave);
         }
-                
+
         public System.Windows.Forms.Label lblCardNumber;
         public System.Windows.Forms.Label lblCategory;
         public System.Windows.Forms.Label lblDescription;

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Core;
 using Core.Categories;
+using Core.Helpers;
 
 namespace WinFormsUI
 {
@@ -117,7 +118,8 @@ namespace WinFormsUI
                 var todayData = timeSeries[Date.Today];
                 var todayRelative = todayData / c.Capacity;
 
-                categoryWithPrefix = DisplayManager.AddPrefixToCategory(todayRelative, c);
+                var level = LevelsHelper.GetLevel(todayRelative, c);
+                categoryWithPrefix = DisplayManager.GetPrefix(level);
 
                 clbCategories.Items.Add(categoryWithPrefix);
 

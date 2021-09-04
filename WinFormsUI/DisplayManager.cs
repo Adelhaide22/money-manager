@@ -1,6 +1,4 @@
 ﻿using Core;
-using Core.Categories;
-using System;
 using System.Collections.Generic;
 
 namespace WinFormsUI
@@ -13,23 +11,15 @@ namespace WinFormsUI
                 + $" {transaction.Amount.Currency} [{string.Join(", ", categories)}] {transaction.Description}";
         }
 
-        public static string AddPrefixToCategory(double todayRelative, Category c)
+        public static string GetPrefix(Levels level)
         {
-            var level = todayRelative switch
-            {
-                _ when todayRelative <= 0 => Levels.Empty,
-                _ when todayRelative <= 0.1 => Levels.Low,
-                _ when todayRelative < 1 => Levels.Normal,
-                _ => Levels.Full,
-            };
-
             return level switch
             {
-                _ when Equals(level, Levels.Empty) => "(EMPTY) ",
-                _ when Equals(level, Levels.Normal) => "",
-                _ when Equals(level, Levels.Low) => "(LOW) ",
+                Levels.Empty => "(EMPTY) ",
+                Levels.Normal => "",
+                Levels.Low => "(LOW) ",
                 _ => "(FULL) ",
-            } + c.Name;
+            };
         }
     }
 }
