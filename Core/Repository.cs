@@ -20,9 +20,10 @@ namespace Core
         static string KredobankDirectory => WorkingDirectory + "kredobank/";
         static string PrivatebankDirectory => WorkingDirectory + "privatbank/";
 
-        public void SaveAutoCategoriesToFile()
+        public void SaveAutoCategories(IReadOnlyCollection <Category> categories)
         {
-            File.WriteAllText(AutoCategoriesFileName, StateManager.SaveCategories().autoCategoriesJson);
+            var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
+            File.WriteAllText(AutoCategoriesFileName, json);
         }
 
         public void SaveUpdatedTransactions()

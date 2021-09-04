@@ -6,22 +6,20 @@ namespace Core
 {
     public interface IRepository
     {
-        public void SaveAutoCategoriesToFile();
+        void SaveAutoCategories(IReadOnlyCollection<Category> categories);
 
-        public void SaveUpdatedTransactions();
+        void SaveUpdatedTransactions();
 
-        public RegexCategory[] GetRegexCategories();
+        RegexCategory[] GetRegexCategories();
 
-        public AutoCategory[] GetAutoCategories();
+        AutoCategory[] GetAutoCategories();
 
-        public CompositeCategory[] GetCompositeCategories();
+        CompositeCategory[] GetCompositeCategories();
 
-        public IEnumerable<Transaction> GetTransactions();
+        IEnumerable<Transaction> GetTransactions();
 
-        public IEnumerable<(string, Stream)> GetUsbFiles();
-
-        public IEnumerable<(string, Stream)> GetPbFiles();
-
-        public IEnumerable<(string, Stream)> GetKbFiles();
+        IEnumerable<(string, Stream)> GetUsbFiles();
+        IEnumerable<(string, Stream)> GetPbFiles();
+        IEnumerable<(string, Stream)> GetKbFiles();
     }
 }

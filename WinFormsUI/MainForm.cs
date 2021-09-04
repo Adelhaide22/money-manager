@@ -60,7 +60,7 @@ namespace WinFormsUI
             State.OnStateChanged += RefreshChart;
 
             repository.SaveUpdatedTransactions();
-            repository.SaveAutoCategoriesToFile();           
+            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).ToList());
             
             RefreshCategories();
             RefreshList();
@@ -69,7 +69,7 @@ namespace WinFormsUI
 
         private void RestoreScrollPosition()
         {
-            lbTransactions.SelectedIndex = _listPosition;
+            lbTransactions.SelectedIndex = _listPosition == 0 ? -1 : _listPosition;
         }
 
         private void LoadCategories()
@@ -113,7 +113,7 @@ namespace WinFormsUI
             for (int i = 0; i < _orderedCategories.Length; i++)
             {
                 var c = _orderedCategories[i];
-                var timeSeries = StateHelper.GetCumulativeTimeSeries(c.Name, c.Increment, c.Capacity);
+                var timeSeries = StateManager.GetCumulativeTimeSeries(c.Name, c.Increment, c.Capacity);
                 var todayData = timeSeries[Date.Today];
                 var todayRelative = todayData / c.Capacity;
 
@@ -161,7 +161,7 @@ namespace WinFormsUI
                 .Cast<int>()
                 .Select(i => _orderedCategories[i].Name);          
 
-            return StateHelper.GetTransactionsUnion(
+            return StateManager.GetTransactionsUnion(
                           categoriesNames,
                           startDate,
                           endDate).Reverse().ToArray();
@@ -222,8 +222,8 @@ namespace WinFormsUI
                     .Replace($"({Levels.Full}) ", "");
                 
                 var category = State.Instance.Categories.First(category => category.Name == name);
-                var smoothedTimeSeries = StateHelper.GetSmoothedTimeSeries(name, smoothingRatio);
-                var cumulativeTimeSeries = StateHelper.GetCumulativeTimeSeries(name, category.Increment, category.Capacity);
+                var smoothedTimeSeries = StateManager.GetSmoothedTimeSeries(name, smoothingRatio);
+                var cumulativeTimeSeries = StateManager.GetCumulativeTimeSeries(name, category.Increment, category.Capacity);
 
                 for (var date = startDate; date <= endDate; date = date.AddDays(1))
                 {
