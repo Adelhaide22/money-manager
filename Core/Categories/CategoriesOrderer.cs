@@ -5,6 +5,14 @@ namespace Core.Categories
 {
     public class CategoriesOrderer : IComparer<Category>
     {
+        public static Dictionary<Type, int> TypeToInt { get; set; } =
+            new Dictionary<Type, int>
+            {
+                { typeof(CompositeCategory), 1 },
+                { typeof(RegexCategory), 2 },
+                { typeof(AutoCategory), 3 },
+            };
+
         public int Compare(Category x, Category y)
         {
             var typeX = x.GetType();
@@ -15,14 +23,7 @@ namespace Core.Categories
                 return x.Name.CompareTo(y.Name);
             }
 
-            var typeToInt = new Dictionary<Type, int>
-            {
-                { typeof(CompositeCategory), 1 },
-                { typeof(RegexCategory), 2 },
-                { typeof(AutoCategory), 3 },
-            };
-
-            return typeToInt[typeX].CompareTo(typeToInt[typeY]);
+            return TypeToInt[typeX].CompareTo(TypeToInt[typeY]);
         }
     }
 }
