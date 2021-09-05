@@ -9,6 +9,45 @@ namespace Core.Tests
     public class OrdererTests
     {
         [Test]
+        public void Orderer_NullNull_Equals()
+        {
+            RegexCategory category1regex = null;
+            CompositeCategory category1composite = null;
+
+            var orderer = new CategoriesOrderer();
+
+            var result = orderer.Compare(category1composite, category1regex);
+
+            result.Should().Be(0);
+        }
+
+        [Test]
+        public void Orderer_RegexNull_RegexFirst()
+        {
+            var category1regex = new RegexCategory("a", new List<Rule>(), 1, 1);
+            CompositeCategory category1composite = null;
+
+            var orderer = new CategoriesOrderer();
+
+            var result = orderer.Compare(category1composite, category1regex);
+
+            result.Should().Be(-1);
+        }
+
+        [Test]
+        public void Orderer_NullComposit_CompositFirst()
+        {
+            var category1regex = new RegexCategory("a", new List<Rule>(), 1, 1);
+            CompositeCategory category1composite = null;
+
+            var orderer = new CategoriesOrderer();
+
+            var result = orderer.Compare(category1composite, category1regex);
+
+            result.Should().Be(-1);
+        }
+
+        [Test]
         public void Orderer_Equals_CompareNames()
         {
             var category1regex = new RegexCategory("a", new List<Rule>(), 1, 1);
