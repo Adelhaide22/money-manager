@@ -15,12 +15,12 @@ namespace WinFormsUI
     {
         private Date startDate, endDate;
         private double smoothingRatio;
-        private Category[] _orderedCategories;
+        private List<Category> _orderedCategories = new();
         private int _listPosition;
 
         public MainForm() => InitializeComponent();
         private event Action OnFilteringUpdated = () => { };
-        private IRepository repository;
+        private IRepository repository = new Repository();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -106,19 +106,19 @@ namespace WinFormsUI
 
             _orderedCategories = State.Instance.Categories
                 .OrderBy(c => c, new CategoriesOrderer())
-                .ToArray();
+                .ToList();
             
             string categoryWithPrefix = string.Empty;
             var indicesToCheck = new List<int>();
 
-            for (int i = 0; i < _orderedCategories.Length; i++)
+            for (int i = 0; i < _orderedCategories.Count; i++)
             {
                 var c = _orderedCategories[i];
                 var timeSeries = StateManager.GetCumulativeTimeSeries(c.Name, c.Increment, c.Capacity);
                 var todayData = timeSeries[Date.Today];
                 var todayRelative = todayData / c.Capacity;
 
-                var level = LevelsHelper.GetLevel(todayRelative, c);
+                var level = LevelsHelper.GetLevel(todayRelative);
                 categoryWithPrefix = DisplayManager.GetPrefix(level);
 
                 clbCategories.Items.Add(categoryWithPrefix);

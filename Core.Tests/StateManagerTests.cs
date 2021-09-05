@@ -11,14 +11,14 @@ namespace Core.Tests
     [TestFixture]
     public class StateManagerTests
     {
-        const string t1File = "\\..\\..\\..\\TestData\\transactions.json";
+        const string transactionsFile = "\\..\\..\\..\\TestData\\transactions.json";
 
         [Test]
         [Order(0)]
         public void Import()
         {
-            var t1Json = File.ReadAllText(Directory.GetCurrentDirectory() + t1File);
-            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), JsonConvert.DeserializeObject<ICollection<Transaction>>(t1Json));
+            var transactionsJson = File.ReadAllText(Directory.GetCurrentDirectory() + transactionsFile);
+            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), JsonConvert.DeserializeObject<ICollection<Transaction>>(transactionsJson));
             State.Instance.Transactions.Should().HaveCount(2);
         }
 

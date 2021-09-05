@@ -13,17 +13,13 @@ namespace Core.Categories
                 { typeof(AutoCategory), 3 },
             };
 
-        public int Compare(Category x, Category y)
+        public int Compare(Category? x, Category? y) => (x?.GetType(), y?.GetType()) switch
         {
-            var typeX = x.GetType();
-            var typeY = y.GetType();
-
-            if (typeX == typeY)
-            {
-                return x.Name.CompareTo(y.Name);
-            }
-
-            return TypeToInt[typeX].CompareTo(TypeToInt[typeY]);
-        }
+            (null, null) => 0,
+            (null, _) => -1,
+            (_, null) => 1,
+            (var a, var b) when a == b => x.Name.CompareTo(y.Name),
+            (var a, var b) => TypeToInt[a].CompareTo(TypeToInt[b]),
+        };
     }
 }

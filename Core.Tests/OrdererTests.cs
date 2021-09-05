@@ -8,12 +8,6 @@ namespace Core.Tests
     [TestFixture]
     public class OrdererTests
     {
-        [SetUp]
-        public void Init()
-        { 
-            
-        }
-
         [Test]
         public void Orderer_Equals_CompareNames()
         {

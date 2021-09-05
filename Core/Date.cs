@@ -57,7 +57,7 @@ namespace Core
 
         public bool Equals(Date other) => _dt.Equals(other._dt);
 
-        public override bool Equals(object obj) => obj is Date d && _dt.Equals(d._dt);
+        public override bool Equals(object? obj) => obj is Date d && _dt.Equals(d._dt);
 
         public override int GetHashCode() => _dt.GetHashCode();
 
