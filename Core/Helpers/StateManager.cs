@@ -120,11 +120,9 @@ namespace Core
                                                     _ => throw new NotSupportedException()
                                                 }
                                                 );
-                case CompositeCategory compositeCategory:
-                    {
-                        var filters = compositeCategory.Categories.Select(GetFilterForCategory).ToArray();
-                        return t => filters.Any(f => f(t));
-                    }
+                case CompositeCategory compositeCategory:                
+                    var filters = compositeCategory.Categories.Select(GetFilterForCategory).ToArray();
+                    return t => filters.Any(f => f(t));                
                 case null:
                     return t => false;
                 default:
