@@ -19,7 +19,9 @@ namespace Core
         IEnumerable<Transaction> GetTransactions();
 
         IEnumerable<(string, Stream)> GetUsbFiles();
+
         IEnumerable<(string, Stream)> GetPbFiles();
+
         IEnumerable<(string, Stream)> GetKbFiles();
     }
 }

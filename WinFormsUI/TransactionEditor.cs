@@ -4,11 +4,11 @@ using System.Windows.Forms;
 
 namespace WinFormsUI
 {
-    public partial class TransactionEditor : Form
+    public partial class EditTransactionForm : Form
     {
         private readonly Transaction transaction;
 
-        public TransactionEditor(Transaction transaction)
+        public EditTransactionForm(Transaction transaction)
         {
             this.transaction = transaction;
             InitializeComponent();

@@ -19,17 +19,6 @@ namespace Core
             ["kb"] = new KredoTransactionsImporter(),
         };
 
-        // TODO: investigate this
-
-        //public static (string regexCategoriesJson, string autoCategoriesJson, string compositeCategoriesJson) SaveCategories()
-        //{
-        //    var regexCategoriesJson = SaveRegex();
-        //    var autoCategoriesJson = SaveAuto();
-        //    var compositeCategoriesJson = SaveComposite();
-
-        //    return (regexCategoriesJson, autoCategoriesJson, compositeCategoriesJson);
-        //}
-
         public static string SaveRegex()
         {
             return JsonConvert.SerializeObject(State.Instance.Categories.Where(c => c is RegexCategory), Formatting.Indented);

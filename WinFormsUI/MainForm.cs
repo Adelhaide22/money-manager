@@ -15,7 +15,7 @@ namespace WinFormsUI
     {
         private Date startDate, endDate;
         private double smoothingRatio;
-        private List<Category> _orderedCategories = new();
+        private Category[] _orderedCategories = Array.Empty<Category>();
         private int _listPosition;
 
         public MainForm() => InitializeComponent();
@@ -106,12 +106,12 @@ namespace WinFormsUI
 
             _orderedCategories = State.Instance.Categories
                 .OrderBy(c => c, new CategoriesOrderer())
-                .ToList();
+                .ToArray();
             
             string categoryWithPrefix = string.Empty;
             var indicesToCheck = new List<int>();
 
-            for (int i = 0; i < _orderedCategories.Count; i++)
+            for (int i = 0; i < _orderedCategories.Length; i++)
             {
                 var c = _orderedCategories[i];
                 var timeSeries = StateManager.GetCumulativeTimeSeries(c.Name, c.Increment, c.Capacity);
@@ -273,7 +273,7 @@ namespace WinFormsUI
             var transactionRecordIndex = lbTransactions.SelectedIndex;
             var transaction = GetTransactionsToDisplay()[transactionRecordIndex];
 
-            var transactionEditor = new TransactionEditor(transaction);
+            var transactionEditor = new EditTransactionForm(transaction);
             transactionEditor.txtboxCardNumber.Text = transaction.CardNumber;
             transactionEditor.txtboxCategory.Text = transaction.Category;
             transactionEditor.txtboxDescription.Text = transaction.Description;

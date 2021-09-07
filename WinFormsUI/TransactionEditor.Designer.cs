@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WinFormsUI
 {
-    partial class TransactionEditor
+    partial class EditTransactionForm
     {
         /// <summary>
         /// Required designer variable.
