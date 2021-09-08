@@ -28,9 +28,14 @@ namespace Core.Importers
                     var date = dataTable.Rows[i][0].ToString();
                     var category = dataTable.Rows[i][2].ToString();
                     var cardNumber = dataTable.Rows[i][3].ToString();
-                    var description = dataTable.Rows[i][4].ToString().Trim();
+                    var description = dataTable.Rows[i][4].ToString()?.Trim() ?? "";
                     var amount = dataTable.Rows[i][5].ToString();
                     var currency = dataTable.Rows[i][6].ToString();
+
+                    if (category is null || cardNumber is null || date is null || amount is null || currency is null)
+                    {
+                        continue;
+                    }
                     transactions.Add(new Transaction(cardNumber, Date.Parse(date),
                         new Money(double.Parse(amount), MoneyManager.ParseCurrency(currency)), description, category));
                 }

@@ -1,6 +1,8 @@
 using FluentAssertions;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,14 +11,14 @@ namespace Core.Tests
     [TestFixture]
     public class StateManagerTests
     {
-        const string t1File = "\\..\\..\\..\\TestData\\transactions.json";
+        const string transactionsFile = "\\..\\..\\..\\TestData\\transactions.json";
 
         [Test]
         [Order(0)]
         public void Import()
         {
-            var t1Json = File.ReadAllText(Directory.GetCurrentDirectory() + t1File);
-            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), t1Json);
+            var transactionsJson = File.ReadAllText(Directory.GetCurrentDirectory() + transactionsFile);
+            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), JsonConvert.DeserializeObject<ICollection<Transaction>>(transactionsJson));
             State.Instance.Transactions.Should().HaveCount(2);
         }
 
@@ -44,7 +46,7 @@ namespace Core.Tests
         {
             var t1 = State.Instance.SaveTransactionsToJson();
             var oldState = State.Instance;
-            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), t1);
+            StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), JsonConvert.DeserializeObject<ICollection<Transaction>>(t1));
 
             State.Instance.Transactions.Should().BeEquivalentTo(oldState.Transactions);
         }
