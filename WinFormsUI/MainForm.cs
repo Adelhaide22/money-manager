@@ -119,7 +119,7 @@ namespace WinFormsUI
                 var todayRelative = todayData / c.Capacity;
 
                 var level = LevelsHelper.GetLevel(todayRelative);
-                categoryWithPrefix = DisplayManager.GetPrefix(level);
+                categoryWithPrefix = DisplayManager.GetPrefix(level) + c.Name;
 
                 clbCategories.Items.Add(categoryWithPrefix);
 
@@ -264,6 +264,16 @@ namespace WinFormsUI
         private void chboxAllCategories_CheckedChanged(object sender, EventArgs e)
         {
             RefreshList();
+        }
+
+        private void button_addCategory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_editSelectedCategory_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void lb_DoubleClick(object sender, EventArgs e)
