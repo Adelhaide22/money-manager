@@ -37,9 +37,11 @@ namespace WinFormsUI
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabSmoothedTrends = new System.Windows.Forms.TabPage();
+            this.tabSmoothedTrends = new System.Windows.Forms.TabPage();
             this.chartSeriesSmoothed = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabCumulativeTrends = new System.Windows.Forms.TabPage();
             this.chartSeriesCumulative = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabCumulativeTrends = new System.Windows.Forms.TabPage();
             this.tabLedger = new System.Windows.Forms.TabPage();
             this.lbTransactions = new System.Windows.Forms.ListBox();
             this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
@@ -180,7 +182,7 @@ namespace WinFormsUI
             // chboxAllCategories
             // 
             this.chboxAllCategories.AutoSize = true;
-            this.chboxAllCategories.Location = new System.Drawing.Point(13, 546);
+            this.chboxAllCategories.Location = new System.Drawing.Point(14, 537);
             this.chboxAllCategories.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chboxAllCategories.Name = "chboxAllCategories";
             this.chboxAllCategories.Size = new System.Drawing.Size(131, 19);
@@ -207,11 +209,11 @@ namespace WinFormsUI
             this.lblStartDate.Size = new System.Drawing.Size(57, 15);
             this.lblStartDate.TabIndex = 11;
             this.lblStartDate.Text = "Start date";
-            //
+            // 
             // cbxIsOnlyCustom
             //
             this.chboxAllCategories.AutoSize = true;
-            this.chboxAllCategories.Location = new System.Drawing.Point(12, 425);
+            this.chboxAllCategories.Location = new System.Drawing.Point(14, 508);
             this.chboxAllCategories.Name = "cbxAllCategories";
             this.chboxAllCategories.Size = new System.Drawing.Size(50, 13);
             this.chboxAllCategories.TabIndex = 12;
@@ -294,7 +296,6 @@ namespace WinFormsUI
             ((System.ComponentModel.ISupportInitialize)(this.chartSeriesSmoothed)).EndInit();
             this.tabCumulativeTrends.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartSeriesCumulative)).EndInit();
-
             this.tabLedger.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
