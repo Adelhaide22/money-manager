@@ -84,6 +84,18 @@ namespace Core
             State.Instance = new State(State.Instance.Categories.ToHashSet(), transactions);
         }
 
+        public static void UpdateCategory(Category category)
+        {
+            var categories = State.Instance.Categories.ToHashSet();
+            if (!categories.Contains(category))
+            {
+                throw new ArgumentException($"{nameof(category)} not found");
+            }
+            categories.Remove(category);
+            categories.Add(category);
+            State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
+        }
+
         public static Func<Transaction, bool> GetFilterForCategory(string categoryName)
         {
             if (State.Instance.Categories.All(c => c.Name != categoryName))

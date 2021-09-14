@@ -1,7 +1,7 @@
 ﻿
 namespace WinFormsUI
 {
-    partial class AutoCategoryEditor
+    partial class AutoCategoryEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@ namespace WinFormsUI
             this.textBox_acapacity = new System.Windows.Forms.TextBox();
             this.label_capacity = new System.Windows.Forms.Label();
             this.btn_SaveACategory = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_acategory = new System.Windows.Forms.TextBox();
             this.label3_category = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -100,10 +100,10 @@ namespace WinFormsUI
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(24, 98);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(254, 23);
-            this.textBox1.TabIndex = 10;
+            this.textBox_acategory.Location = new System.Drawing.Point(24, 98);
+            this.textBox_acategory.Name = "textBox1";
+            this.textBox_acategory.Size = new System.Drawing.Size(254, 23);
+            this.textBox_acategory.TabIndex = 10;
             // 
             // label3_category
             // 
@@ -119,7 +119,7 @@ namespace WinFormsUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_acategory);
             this.Controls.Add(this.label3_category);
             this.Controls.Add(this.btn_SaveACategory);
             this.Controls.Add(this.textBox_acapacity);
@@ -144,7 +144,7 @@ namespace WinFormsUI
         private System.Windows.Forms.TextBox textBox_acapacity;
         private System.Windows.Forms.Label label_capacity;
         private System.Windows.Forms.Button btn_SaveACategory;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_acategory;
         private System.Windows.Forms.Label label3_category;
     }
 }

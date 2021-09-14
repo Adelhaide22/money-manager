@@ -1,4 +1,5 @@
 ﻿using Core;
+using System;
 using System.Collections.Generic;
 
 namespace WinFormsUI
@@ -20,6 +21,16 @@ namespace WinFormsUI
                 Levels.Low => "(LOW) ",
                 _ => "(FULL) ",
             };
+        }
+
+        public static IReadOnlyCollection<string> ReadList(string text)
+        {
+            return text.Split("\r\n");
+        }
+
+        public static string DisplayList(IReadOnlyCollection<string> categories)
+        {
+            return string.Join(Environment.NewLine, categories);
         }
     }
 }

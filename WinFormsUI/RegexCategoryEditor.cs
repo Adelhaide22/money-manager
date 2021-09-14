@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Categories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,21 @@ using System.Windows.Forms;
 
 namespace WinFormsUI
 {
-    public partial class RegexCategoryEditor : Form
+    public partial class RegexCategoryEditorForm : Form, ICategoryEditor
     {
-        public RegexCategoryEditor()
+        public RegexCategoryEditorForm()
         {
             InitializeComponent();
+        }
+
+        public void FillInformation<T>(T category) where T : Category
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveEditedCategory()
+        {
+            throw new NotImplementedException();
         }
 
         private void btn_SaveRCategory_Click(object sender, EventArgs e)

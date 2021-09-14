@@ -273,7 +273,23 @@ namespace WinFormsUI
 
         private void button_editSelectedCategory_Click(object sender, EventArgs e)
         {
+            var categoriesToEdit = clbCategories.CheckedIndices
+                .Cast<int>()
+                .Select(i => _orderedCategories[i])
+                .ToList();
 
+            foreach (var category in categoriesToEdit)
+            {
+                var editor = category switch
+                {
+                    AutoCategory => (ICategoryEditor) new AutoCategoryEditorForm(),
+                    RegexCategory => new RegexCategoryEditorForm(),
+                    CompositeCategory => new CompositeCategoryEditorForm(),
+                    _ => throw new NotImplementedException(),
+                };
+
+                editor.FillInformation(category);
+            }
         }
 
         private void lb_DoubleClick(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace WinFormsUI
 {
-    partial class CompositeCategoryEditor
+    partial class CompositeCategoryEditorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace WinFormsUI
             this.textBox_ccapacity = new System.Windows.Forms.TextBox();
             this.label_capacity = new System.Windows.Forms.Label();
             this.btn_SaveCCategory = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_ccategories = new System.Windows.Forms.TextBox();
             this.label3_category = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -93,11 +93,13 @@ namespace WinFormsUI
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(24, 222);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(254, 157);
-            this.textBox1.TabIndex = 10;
+            this.textBox_ccategories.Location = new System.Drawing.Point(24, 222);
+            this.textBox_ccategories.Multiline = true;
+            this.textBox_ccategories.Name = "textBox1";
+            this.textBox_ccategories.Size = new System.Drawing.Size(254, 157);
+            this.textBox_ccategories.TabIndex = 10;
+            this.textBox_ccategories.AcceptsReturn = true;
+            this.textBox_ccategories.AcceptsTab = true;
             // 
             // label3_category
             // 
@@ -113,7 +115,7 @@ namespace WinFormsUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 450);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_ccategories);
             this.Controls.Add(this.label3_category);
             this.Controls.Add(this.btn_SaveCCategory);
             this.Controls.Add(this.textBox_ccapacity);
@@ -136,7 +138,7 @@ namespace WinFormsUI
         private System.Windows.Forms.TextBox textBox_ccapacity;
         private System.Windows.Forms.Label label_capacity;
         private System.Windows.Forms.Button btn_SaveCCategory;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_ccategories;
         private System.Windows.Forms.Label label3_category;
     }
 }

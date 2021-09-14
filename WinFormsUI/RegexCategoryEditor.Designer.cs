@@ -1,7 +1,7 @@
 ﻿
 namespace WinFormsUI
 {
-    partial class RegexCategoryEditor
+    partial class RegexCategoryEditorForm
     {
         /// <summary>
         /// Required designer variable.

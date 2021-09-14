@@ -182,7 +182,7 @@ namespace WinFormsUI
             // chboxAllCategories
             // 
             this.chboxAllCategories.AutoSize = true;
-            this.chboxAllCategories.Location = new System.Drawing.Point(14, 537);
+            this.chboxAllCategories.Location = new System.Drawing.Point(14, 538);
             this.chboxAllCategories.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.chboxAllCategories.Name = "chboxAllCategories";
             this.chboxAllCategories.Size = new System.Drawing.Size(131, 19);
@@ -210,17 +210,6 @@ namespace WinFormsUI
             this.lblStartDate.TabIndex = 11;
             this.lblStartDate.Text = "Start date";
             // 
-            // cbxIsOnlyCustom
-            //
-            this.chboxAllCategories.AutoSize = true;
-            this.chboxAllCategories.Location = new System.Drawing.Point(14, 508);
-            this.chboxAllCategories.Name = "cbxAllCategories";
-            this.chboxAllCategories.Size = new System.Drawing.Size(50, 13);
-            this.chboxAllCategories.TabIndex = 12;
-            this.chboxAllCategories.Text = "Show All Categories";
-            this.chboxAllCategories.Checked = false;
-            this.chboxAllCategories.CheckedChanged += new System.EventHandler(this.chboxAllCategories_CheckedChanged);
-            // 
             // lblSmoothingRatio
             // 
             this.lblSmoothingRatio.AutoSize = true;
@@ -245,7 +234,7 @@ namespace WinFormsUI
             // 
             this.clbCategories.CheckOnClick = true;
             this.clbCategories.FormattingEnabled = true;
-            this.clbCategories.Location = new System.Drawing.Point(14, 162);
+            this.clbCategories.Location = new System.Drawing.Point(14, 163);
             this.clbCategories.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.clbCategories.Name = "clbCategories";
             this.clbCategories.Size = new System.Drawing.Size(233, 310);
