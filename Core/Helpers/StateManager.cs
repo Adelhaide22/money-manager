@@ -31,7 +31,9 @@ namespace Core
 
         public static void LoadCategories(RegexCategory[] regex, AutoCategory[] auto, CompositeCategory[] composite)
         {
-            State.Instance = new State(regex.Cast<Category>().Concat(auto).Concat(composite).Concat(State.Instance.Categories).ToHashSet(), State.Instance.Transactions.ToHashSet());
+            var categories = regex.Cast<Category>().Concat(auto).Concat(composite).Concat(State.Instance.Categories).ToHashSet();
+
+            State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
         }
 
         public static void LoadTransactions(IEnumerable<(string key, Stream stream)> files, IEnumerable<Transaction> modifiedTransactions)

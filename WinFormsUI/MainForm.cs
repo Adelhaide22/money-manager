@@ -20,7 +20,7 @@ namespace WinFormsUI
 
         public MainForm() => InitializeComponent();
         private event Action OnFilteringUpdated = () => { };
-        private IRepository repository = new Repository();
+        private IRepository repository = new FileRepository();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -47,7 +47,7 @@ namespace WinFormsUI
             dateTimePickerStart.Value = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             dateTimePickerEnd.Value = DateTime.Now.Date;
 
-            repository = new Repository();
+            repository = new FileRepository();
 
             LoadCategories();
             LoadTransactions();
@@ -61,7 +61,7 @@ namespace WinFormsUI
             State.OnStateChanged += RefreshChart;
 
             repository.SaveUpdatedTransactions();
-            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).ToList());
+            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).Cast<AutoCategory>().AsEnumerable());
             
             RefreshCategories();
             RefreshList();

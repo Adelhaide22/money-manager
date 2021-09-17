@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Core
 {
-    public class Repository : IRepository
+    public class FileRepository : IRepository
     {
         static string WorkingDirectory => Directory.GetCurrentDirectory() + "/data/";
         static string CategoriesDirectory => WorkingDirectory + "categories/";
@@ -15,16 +15,9 @@ namespace Core
         static string CompositeCategoriesFileName => CategoriesDirectory + "compositeCategories.json";
         static string RegexCategoriesFileName => CategoriesDirectory + "regexCategories.json";
         static string TransactionsFileName => WorkingDirectory + "transactions.json";
-
         static string UsbDirectory => WorkingDirectory + "ukrsibbank/";
         static string KredobankDirectory => WorkingDirectory + "kredobank/";
         static string PrivatebankDirectory => WorkingDirectory + "privatbank/";
-
-        public void SaveAutoCategories(IReadOnlyCollection <Category> categories)
-        {
-            var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
-            File.WriteAllText(AutoCategoriesFileName, json);
-        }
 
         public void SaveUpdatedTransactions()
         {
@@ -83,6 +76,24 @@ namespace Core
                 File.WriteAllText(fileName, "[]");
             }
             return File.ReadAllText(fileName);
+        }
+
+        public void SaveAutoCategories(IEnumerable<AutoCategory> categories)
+        {
+            var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
+            File.WriteAllText(AutoCategoriesFileName, json);
+        }
+
+        public void SaveRegexCategories(IEnumerable<RegexCategory> categories)
+        {
+            var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
+            File.WriteAllText(RegexCategoriesFileName, json);
+        }
+
+        public void SaveCompositeCategories(IEnumerable<CompositeCategory> categories)
+        {
+            var json = JsonConvert.SerializeObject(categories, Formatting.Indented);
+            File.WriteAllText(CompositeCategoriesFileName, json);
         }
     }
 }

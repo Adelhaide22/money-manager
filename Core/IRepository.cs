@@ -6,7 +6,9 @@ namespace Core
 {
     public interface IRepository
     {
-        void SaveAutoCategories(IReadOnlyCollection<Category> categories);
+        void SaveAutoCategories(IEnumerable<AutoCategory> categories);
+        void SaveRegexCategories(IEnumerable<RegexCategory> categories);
+        void SaveCompositeCategories(IEnumerable<CompositeCategory> categories);
 
         void SaveUpdatedTransactions();
 
