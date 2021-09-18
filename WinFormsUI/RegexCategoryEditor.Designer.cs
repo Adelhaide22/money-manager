@@ -38,6 +38,7 @@ namespace WinFormsUI
             this.textBox_rcapacity = new System.Windows.Forms.TextBox();
             this.label_capacity = new System.Windows.Forms.Label();
             this.btn_SaveRCategory = new System.Windows.Forms.Button();
+            this.button_delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_rules
@@ -107,13 +108,23 @@ namespace WinFormsUI
             // 
             // btn_SaveRCategory
             // 
-            this.btn_SaveRCategory.Location = new System.Drawing.Point(115, 402);
+            this.btn_SaveRCategory.Location = new System.Drawing.Point(172, 404);
             this.btn_SaveRCategory.Name = "btn_SaveRCategory";
-            this.btn_SaveRCategory.Size = new System.Drawing.Size(75, 23);
+            this.btn_SaveRCategory.Size = new System.Drawing.Size(106, 23);
             this.btn_SaveRCategory.TabIndex = 8;
-            this.btn_SaveRCategory.Text = "Save";
+            this.btn_SaveRCategory.Text = "Save changes";
             this.btn_SaveRCategory.UseVisualStyleBackColor = true;
             this.btn_SaveRCategory.Click += new System.EventHandler(this.btn_SaveRCategory_Click);
+            // 
+            // button_delete
+            // 
+            this.button_delete.Location = new System.Drawing.Point(24, 404);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(106, 23);
+            this.button_delete.TabIndex = 11;
+            this.button_delete.Text = "Delete category";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // RegexCategoryEditor
             // 
@@ -129,6 +140,7 @@ namespace WinFormsUI
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_rules);
             this.Controls.Add(this.label_rules);
+            this.Controls.Add(this.button_delete);
             this.Name = "RegexCategoryEditor";
             this.Text = "CategoryEditor";
             this.ResumeLayout(false);
@@ -147,5 +159,6 @@ namespace WinFormsUI
         private System.Windows.Forms.TextBox textBox_rcapacity;
         private System.Windows.Forms.Label label_capacity;
         private System.Windows.Forms.Button btn_SaveRCategory;
+        private System.Windows.Forms.Button button_delete;
     }
 }

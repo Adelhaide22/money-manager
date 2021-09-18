@@ -29,6 +29,7 @@ namespace WinFormsUI
             this.textBox_ccapacity = new System.Windows.Forms.TextBox();
             this.label_capacity = new System.Windows.Forms.Label();
             this.btn_SaveCCategory = new System.Windows.Forms.Button();
+            this.button_delete = new System.Windows.Forms.Button();
             this.textBox_ccategories = new System.Windows.Forms.TextBox();
             this.label3_category = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -83,13 +84,23 @@ namespace WinFormsUI
             // 
             // btn_SaveCCategory
             // 
-            this.btn_SaveCCategory.Location = new System.Drawing.Point(115, 402);
+            this.btn_SaveCCategory.Location = new System.Drawing.Point(172, 404);
             this.btn_SaveCCategory.Name = "btn_SaveCCategory";
-            this.btn_SaveCCategory.Size = new System.Drawing.Size(75, 23);
+            this.btn_SaveCCategory.Size = new System.Drawing.Size(106, 23);
             this.btn_SaveCCategory.TabIndex = 8;
-            this.btn_SaveCCategory.Text = "Save";
+            this.btn_SaveCCategory.Text = "Save changes";
             this.btn_SaveCCategory.UseVisualStyleBackColor = true;
             this.btn_SaveCCategory.Click += new System.EventHandler(this.btn_SaveCCategory_Click);
+            // 
+            // button_delete
+            // 
+            this.button_delete.Location = new System.Drawing.Point(24, 404);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(106, 23);
+            this.button_delete.TabIndex = 11;
+            this.button_delete.Text = "Delete category";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // textBox1
             // 
@@ -123,6 +134,7 @@ namespace WinFormsUI
             this.Controls.Add(this.textBox_cincrement);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_cname);
+            this.Controls.Add(this.button_delete);
             this.Controls.Add(this.label1);
             this.Name = "CompositeCategoryEditor";
             this.Text = "CategoryEditor";
@@ -140,5 +152,6 @@ namespace WinFormsUI
         private System.Windows.Forms.Button btn_SaveCCategory;
         private System.Windows.Forms.TextBox textBox_ccategories;
         private System.Windows.Forms.Label label3_category;
+        private System.Windows.Forms.Button button_delete;
     }
 }

@@ -99,6 +99,16 @@ namespace WinFormsUI
             this.btn_SaveACategory.UseVisualStyleBackColor = true;
             this.btn_SaveACategory.Click += new System.EventHandler(this.btn_SaveACategory_Click);
             // 
+            // button_delete
+            // 
+            this.button_delete.Location = new System.Drawing.Point(24, 404);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(106, 23);
+            this.button_delete.TabIndex = 11;
+            this.button_delete.Text = "Delete category";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+            // 
             // textBox_acategory
             // 
             this.textBox_acategory.Location = new System.Drawing.Point(24, 98);
@@ -114,16 +124,6 @@ namespace WinFormsUI
             this.label3_category.Size = new System.Drawing.Size(55, 15);
             this.label3_category.TabIndex = 9;
             this.label3_category.Text = "Category";
-            // 
-            // button_delete
-            // 
-            this.button_delete.Location = new System.Drawing.Point(24, 404);
-            this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(106, 23);
-            this.button_delete.TabIndex = 11;
-            this.button_delete.Text = "Delete category";
-            this.button_delete.UseVisualStyleBackColor = true;
-            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
             // AutoCategoryEditorForm
             // 
