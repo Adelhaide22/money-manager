@@ -79,6 +79,12 @@ namespace Core
             }
         }
 
+        public static void DeleteCategory(Category category)
+        {
+            var categories = State.Instance.Categories.Where(c => !c.Equals(category)).ToHashSet();
+            State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
+        }
+
         public static void UpdateTransaction(Transaction transaction)
         {
             var transactions = State.Instance.Transactions.ToHashSet();

@@ -32,30 +32,45 @@ namespace WinFormsUI
             ShowDialog();
         }
 
-        public void SaveEditedCategory()
+        public T? ReadEditedCategory<T>() where T : Category
         {
             var name = textBox_rname.Text;
             var increment = int.TryParse(textBox_rincrement.Text, out int i) ? i : 0;
             var capacity = int.TryParse(textBox_rcapacity.Text, out int c) ? c : 0;
             var rules = DisplayManager.ReadRules(textBox_rules.Text);
 
-            var newCategory = new RegexCategory(name, rules, increment, capacity);
-
-            StateManager.UpdateCategory(newCategory);
+            return new RegexCategory(name, rules, increment, capacity) as T;
         }
 
         private void btn_SaveRCategory_Click(object sender, EventArgs e)
         {
-            SaveEditedCategory();
+            var newCategory = ReadEditedCategory<RegexCategory>();
+            if (newCategory is not null)
+            {
+                StateManager.UpdateCategory(newCategory);
+            }
             Close();
         }
 
-        private void CheckEnterKeyPress(object sender, KeyPressEventArgs e)
+        private void CheckEnterKeyPress(object sender, KeyPressEventArgs e) // todo
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                SaveEditedCategory();
+                var newCategory = ReadEditedCategory<RegexCategory>();
+                if (newCategory is not null)
+                {
+                    StateManager.UpdateCategory(newCategory);
+                }
                 Close();
+            }
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            var newCategory = ReadEditedCategory<RegexCategory>();
+            if (newCategory is not null)
+            {
+                StateManager.DeleteCategory(newCategory);
             }
         }
     }

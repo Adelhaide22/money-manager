@@ -32,21 +32,23 @@ namespace WinFormsUI
             ShowDialog();
         }
 
-        public void SaveEditedCategory()
+        public T? ReadEditedCategory<T>() where T : Category
         {
             var name = textBox_cname.Text;
             var increment = int.TryParse(textBox_cincrement.Text, out int i) ? i : 0;
             var capacity = int.TryParse(textBox_ccapacity.Text, out int c) ? c : 0;
             var categories = DisplayManager.ReadList(textBox_ccategories.Text);
 
-            var newCategory = new CompositeCategory(name, increment, capacity, categories);
-
-            StateManager.UpdateCategory(newCategory);
+            return new CompositeCategory(name, increment, capacity, categories) as T;
         }
 
         private void btn_SaveCCategory_Click(object sender, EventArgs e)
         {
-            SaveEditedCategory();
+            var newCategory = ReadEditedCategory<CompositeCategory>();
+            if (newCategory is not null)
+            {
+                StateManager.UpdateCategory(newCategory);
+            }
             Close();
         }
 
@@ -54,8 +56,21 @@ namespace WinFormsUI
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                SaveEditedCategory();
+                var newCategory = ReadEditedCategory<CompositeCategory>();
+                if (newCategory is not null)
+                {
+                    StateManager.UpdateCategory(newCategory);
+                }
                 Close();
+            }
+        }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            var newCategory = ReadEditedCategory<CompositeCategory>();
+            if (newCategory is not null)
+            {
+                StateManager.DeleteCategory(newCategory);
             }
         }
     }

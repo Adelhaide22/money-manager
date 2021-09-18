@@ -38,6 +38,7 @@ namespace WinFormsUI
             this.btn_SaveACategory = new System.Windows.Forms.Button();
             this.textBox_acategory = new System.Windows.Forms.TextBox();
             this.label3_category = new System.Windows.Forms.Label();
+            this.button_delete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -90,18 +91,18 @@ namespace WinFormsUI
             // 
             // btn_SaveACategory
             // 
-            this.btn_SaveACategory.Location = new System.Drawing.Point(115, 402);
+            this.btn_SaveACategory.Location = new System.Drawing.Point(172, 404);
             this.btn_SaveACategory.Name = "btn_SaveACategory";
-            this.btn_SaveACategory.Size = new System.Drawing.Size(75, 23);
+            this.btn_SaveACategory.Size = new System.Drawing.Size(106, 23);
             this.btn_SaveACategory.TabIndex = 8;
-            this.btn_SaveACategory.Text = "Save";
+            this.btn_SaveACategory.Text = "Save changes";
             this.btn_SaveACategory.UseVisualStyleBackColor = true;
             this.btn_SaveACategory.Click += new System.EventHandler(this.btn_SaveACategory_Click);
             // 
-            // textBox1
+            // textBox_acategory
             // 
             this.textBox_acategory.Location = new System.Drawing.Point(24, 98);
-            this.textBox_acategory.Name = "textBox1";
+            this.textBox_acategory.Name = "textBox_acategory";
             this.textBox_acategory.Size = new System.Drawing.Size(254, 23);
             this.textBox_acategory.TabIndex = 10;
             // 
@@ -114,11 +115,22 @@ namespace WinFormsUI
             this.label3_category.TabIndex = 9;
             this.label3_category.Text = "Category";
             // 
-            // AutoCategoryEditor
+            // button_delete
+            // 
+            this.button_delete.Location = new System.Drawing.Point(24, 404);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(106, 23);
+            this.button_delete.TabIndex = 11;
+            this.button_delete.Text = "Delete category";
+            this.button_delete.UseVisualStyleBackColor = true;
+            this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
+            // 
+            // AutoCategoryEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 450);
+            this.Controls.Add(this.button_delete);
             this.Controls.Add(this.textBox_acategory);
             this.Controls.Add(this.label3_category);
             this.Controls.Add(this.btn_SaveACategory);
@@ -128,7 +140,7 @@ namespace WinFormsUI
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_aname);
             this.Controls.Add(this.label1);
-            this.Name = "AutoCategoryEditor";
+            this.Name = "AutoCategoryEditorForm";
             this.Text = "CategoryEditor";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -146,5 +158,6 @@ namespace WinFormsUI
         private System.Windows.Forms.Button btn_SaveACategory;
         private System.Windows.Forms.TextBox textBox_acategory;
         private System.Windows.Forms.Label label3_category;
+        private System.Windows.Forms.Button button_delete;
     }
 }

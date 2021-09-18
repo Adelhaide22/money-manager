@@ -10,6 +10,6 @@ namespace WinFormsUI
     interface ICategoryEditor
     {
         void FillInformation<T>(T category) where T: Category;
-        void SaveEditedCategory(); // todo thibk about better signature and reusability
+        T? ReadEditedCategory<T>() where T : Category;
     }
 }

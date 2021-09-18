@@ -301,6 +301,8 @@ namespace WinFormsUI
 
                 editor.FillInformation(category);
             }
+
+            RefreshCategories();
         }
 
         private void lb_DoubleClick(object sender, EventArgs e)
