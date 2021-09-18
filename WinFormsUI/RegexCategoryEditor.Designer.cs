@@ -57,6 +57,7 @@ namespace WinFormsUI
             this.textBox_rules.Name = "textBox_rules";
             this.textBox_rules.Size = new System.Drawing.Size(254, 156);
             this.textBox_rules.TabIndex = 1;
+            this.textBox_rules.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label1
             // 
@@ -73,6 +74,7 @@ namespace WinFormsUI
             this.textBox_rname.Name = "textBox_rname";
             this.textBox_rname.Size = new System.Drawing.Size(254, 23);
             this.textBox_rname.TabIndex = 3;
+            this.textBox_rname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label2
             // 
@@ -89,6 +91,7 @@ namespace WinFormsUI
             this.textBox_rincrement.Name = "textBox_rincrement";
             this.textBox_rincrement.Size = new System.Drawing.Size(254, 23);
             this.textBox_rincrement.TabIndex = 5;
+            this.textBox_rincrement.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // textBox_rcapacity
             // 
@@ -96,6 +99,7 @@ namespace WinFormsUI
             this.textBox_rcapacity.Name = "textBox_rcapacity";
             this.textBox_rcapacity.Size = new System.Drawing.Size(254, 23);
             this.textBox_rcapacity.TabIndex = 7;
+            this.textBox_rcapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label_capacity
             // 

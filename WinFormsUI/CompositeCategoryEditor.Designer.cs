@@ -49,6 +49,7 @@ namespace WinFormsUI
             this.textBox_cname.Name = "textBox_cname";
             this.textBox_cname.Size = new System.Drawing.Size(254, 23);
             this.textBox_cname.TabIndex = 3;
+            this.textBox_cname.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label2
             // 
@@ -65,6 +66,7 @@ namespace WinFormsUI
             this.textBox_cincrement.Name = "textBox_cincrement";
             this.textBox_cincrement.Size = new System.Drawing.Size(254, 23);
             this.textBox_cincrement.TabIndex = 5;
+            this.textBox_cincrement.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // textBox_ccapacity
             // 
@@ -72,6 +74,7 @@ namespace WinFormsUI
             this.textBox_ccapacity.Name = "textBox_ccapacity";
             this.textBox_ccapacity.Size = new System.Drawing.Size(254, 23);
             this.textBox_ccapacity.TabIndex = 7;
+            this.textBox_ccapacity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label_capacity
             // 
@@ -111,6 +114,7 @@ namespace WinFormsUI
             this.textBox_ccategories.TabIndex = 10;
             this.textBox_ccategories.AcceptsReturn = true;
             this.textBox_ccategories.AcceptsTab = true;
+            this.textBox_ccategories.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label3_category
             // 
