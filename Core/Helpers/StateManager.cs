@@ -36,6 +36,11 @@ namespace Core
             State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
         }
 
+        public static void UpdateStateWithNewCategory<T>(T category) where T: Category
+        {
+            State.Instance = new State(State.Instance.Categories.Concat(new[] { category }).ToHashSet(), State.Instance.Transactions.ToHashSet());
+        }
+
         public static void LoadTransactions(IEnumerable<(string key, Stream stream)> files, IEnumerable<Transaction> modifiedTransactions)
         {
             var newTransactions = new List<Transaction>();
