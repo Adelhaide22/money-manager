@@ -26,12 +26,17 @@ namespace WinFormsUI
                 textBox_category.Enabled = true;
                 textBox_rules.Enabled = false;
                 textBox_categories.Enabled = false;
+
+                textBox_rules.PlaceholderText = string.Empty;
+                textBox_categories.PlaceholderText = string.Empty;
             }
             if (selectedItem == nameof(RegexCategory))
             {
                 textBox_rules.Enabled = true;
                 textBox_category.Enabled = false;
                 textBox_categories.Enabled = false;
+
+                textBox_categories.PlaceholderText = string.Empty;
 
                 textBox_rules.ScrollBars = ScrollBars.Vertical;
                 textBox_rules.PlaceholderText = DisplayManager.DisplayRules(new List<Rule>() { new Rule("*.", "*", "*.", "*.")});
@@ -41,6 +46,8 @@ namespace WinFormsUI
                 textBox_categories.Enabled = true;
                 textBox_rules.Enabled = false;
                 textBox_category.Enabled = false;
+
+                textBox_rules.PlaceholderText = string.Empty;
 
                 textBox_categories.ScrollBars = ScrollBars.Vertical;
                 textBox_categories.PlaceholderText = DisplayManager.DisplayList(new List<string>() { "[Auto] CategoryName1", "[Auto] CategoryName2" });
