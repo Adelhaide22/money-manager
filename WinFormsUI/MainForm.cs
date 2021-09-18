@@ -68,6 +68,13 @@ namespace WinFormsUI
             RefreshChart();
         }
 
+        private void MainForm_Closing(object sender, EventArgs e)
+        {
+            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).Cast<AutoCategory>().AsEnumerable());
+            repository.SaveCompositeCategories(State.Instance.Categories.Where(c => c is CompositeCategory).Cast<CompositeCategory>().AsEnumerable());
+            repository.SaveRegexCategories(State.Instance.Categories.Where(c => c is RegexCategory).Cast<RegexCategory>().AsEnumerable());
+        }
+
         private void RestoreScrollPosition()
         {
             lbTransactions.SelectedIndex = _listPosition == 0 ? -1 : _listPosition;

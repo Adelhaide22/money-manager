@@ -280,6 +280,7 @@ namespace WinFormsUI
             this.Name = "MainForm";
             this.Text = "Money Manager";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosing += new FormClosingEventHandler(this.MainForm_Closing);
             this.tabs.ResumeLayout(false);
             this.tabSmoothedTrends.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartSeriesSmoothed)).EndInit();

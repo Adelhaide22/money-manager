@@ -21,14 +21,14 @@ namespace WinFormsUI
 
         public void FillInformation<T>(T category) where T : Category
         {
-            if (category is not CompositeCategory autoCategory)
+            if (category is not CompositeCategory compositeCategory)
             {
-                throw new ArgumentNullException("Argument type is not AutoCategory");
+                throw new ArgumentNullException("Argument type is not CompositeCategory");
             }
-            textBox_ccapacity.Text = autoCategory.Capacity.ToString();
-            textBox_cincrement.Text = autoCategory.Increment.ToString();
-            textBox_cname.Text = autoCategory.Name.ToString();
-            textBox_ccategories.Text = DisplayManager.DisplayList(autoCategory.Categories);
+            textBox_ccapacity.Text = compositeCategory.Capacity.ToString();
+            textBox_cincrement.Text = compositeCategory.Increment.ToString();
+            textBox_cname.Text = compositeCategory.Name.ToString();
+            textBox_ccategories.Text = DisplayManager.DisplayList(compositeCategory.Categories);
             ShowDialog();
         }
 
