@@ -213,7 +213,7 @@ namespace WinFormsUI
             // lblSmoothingRatio
             // 
             this.lblSmoothingRatio.AutoSize = true;
-            this.lblSmoothingRatio.Location = new System.Drawing.Point(14, 589);
+            this.lblSmoothingRatio.Location = new System.Drawing.Point(14, 582);
             this.lblSmoothingRatio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSmoothingRatio.Name = "lblSmoothingRatio";
             this.lblSmoothingRatio.Size = new System.Drawing.Size(96, 15);
