@@ -46,6 +46,7 @@ namespace WinFormsUI
 
             dateTimePickerStart.Value = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             dateTimePickerEnd.Value = DateTime.Now.Date;
+            txtboxSmoothingRatio_TextChanged(sender, e);
 
             repository = new FileRepository();
 
