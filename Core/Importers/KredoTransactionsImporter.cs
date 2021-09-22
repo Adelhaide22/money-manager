@@ -49,7 +49,7 @@ namespace Core.Importers
                     }
 
                     actualText.RemoveAll(a => regex.IsMatch(a));
-                    
+
                     while (actualText.Any())
                     {
                         var transactionData = actualText.Skip(2).TakeWhile(s => !Date.TryParse(s, out var d)).ToArray();
