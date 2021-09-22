@@ -16,7 +16,7 @@
         public override bool Equals(object? obj)
         {
             return obj is Category category &&
-                   Name == category.Name; // todo what is change name in editor?
+                   Name == category.Name;
         }
         
         public override int GetHashCode()
