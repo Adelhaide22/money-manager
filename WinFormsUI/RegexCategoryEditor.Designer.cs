@@ -70,6 +70,7 @@ namespace WinFormsUI
             // 
             // textBox_rname
             // 
+            this.textBox_rname.Enabled = false;
             this.textBox_rname.Location = new System.Drawing.Point(24, 40);
             this.textBox_rname.Name = "textBox_rname";
             this.textBox_rname.Size = new System.Drawing.Size(254, 23);
@@ -130,7 +131,7 @@ namespace WinFormsUI
             this.button_delete.UseVisualStyleBackColor = true;
             this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
-            // RegexCategoryEditor
+            // RegexCategoryEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +146,7 @@ namespace WinFormsUI
             this.Controls.Add(this.textBox_rules);
             this.Controls.Add(this.label_rules);
             this.Controls.Add(this.button_delete);
-            this.Name = "RegexCategoryEditor";
+            this.Name = "RegexCategoryEditorForm";
             this.Text = "CategoryEditor";
             this.ResumeLayout(false);
             this.PerformLayout();

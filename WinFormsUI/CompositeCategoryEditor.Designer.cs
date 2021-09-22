@@ -45,6 +45,7 @@ namespace WinFormsUI
             // 
             // textBox_cname
             // 
+            this.textBox_cname.Enabled = false;
             this.textBox_cname.Location = new System.Drawing.Point(24, 40);
             this.textBox_cname.Name = "textBox_cname";
             this.textBox_cname.Size = new System.Drawing.Size(254, 23);
@@ -105,15 +106,15 @@ namespace WinFormsUI
             this.button_delete.UseVisualStyleBackColor = true;
             this.button_delete.Click += new System.EventHandler(this.button_delete_Click);
             // 
-            // textBox1
+            // textBox_ccategories
             // 
-            this.textBox_ccategories.Location = new System.Drawing.Point(24, 222);
-            this.textBox_ccategories.Multiline = true;
-            this.textBox_ccategories.Name = "textBox1";
-            this.textBox_ccategories.Size = new System.Drawing.Size(254, 157);
-            this.textBox_ccategories.TabIndex = 10;
             this.textBox_ccategories.AcceptsReturn = true;
             this.textBox_ccategories.AcceptsTab = true;
+            this.textBox_ccategories.Location = new System.Drawing.Point(24, 222);
+            this.textBox_ccategories.Multiline = true;
+            this.textBox_ccategories.Name = "textBox_ccategories";
+            this.textBox_ccategories.Size = new System.Drawing.Size(254, 157);
+            this.textBox_ccategories.TabIndex = 10;
             this.textBox_ccategories.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnterKeyPress);
             // 
             // label3_category
@@ -125,7 +126,7 @@ namespace WinFormsUI
             this.label3_category.TabIndex = 9;
             this.label3_category.Text = "Categories";
             // 
-            // CompositeCategoryEditor
+            // CompositeCategoryEditorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,7 +141,7 @@ namespace WinFormsUI
             this.Controls.Add(this.textBox_cname);
             this.Controls.Add(this.button_delete);
             this.Controls.Add(this.label1);
-            this.Name = "CompositeCategoryEditor";
+            this.Name = "CompositeCategoryEditorForm";
             this.Text = "CategoryEditor";
             this.ResumeLayout(false);
             this.PerformLayout();
