@@ -277,7 +277,7 @@ namespace WinFormsUI
         private void button_addCategory_Click(object sender, EventArgs e)
         {
             var form = new AddCategoryForm();
-            form.comboBox1.Items.AddRange(new string[] { nameof(AutoCategory), nameof(RegexCategory), nameof(CompositeCategory)});
+            form.categoryTypesList.Items.AddRange(new string[] { nameof(AutoCategory), nameof(RegexCategory), nameof(CompositeCategory)});
             form.ShowDialog();
 
             RefreshCategories();

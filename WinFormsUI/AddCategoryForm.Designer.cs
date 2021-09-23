@@ -30,7 +30,7 @@ namespace WinFormsUI
         private void InitializeComponent()
         {
             this.lbl_categoryType = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.categoryTypesList = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.textBox_increment = new System.Windows.Forms.TextBox();
@@ -57,12 +57,12 @@ namespace WinFormsUI
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(13, 35);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(266, 23);
-            this.comboBox1.TabIndex = 1;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.categoryTypesList.FormattingEnabled = true;
+            this.categoryTypesList.Location = new System.Drawing.Point(13, 35);
+            this.categoryTypesList.Name = "categoryTypesList";
+            this.categoryTypesList.Size = new System.Drawing.Size(266, 23);
+            this.categoryTypesList.TabIndex = 1;
+            this.categoryTypesList.SelectedIndexChanged += new System.EventHandler(this.categoryTypesList_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -193,7 +193,7 @@ namespace WinFormsUI
             this.Controls.Add(this.label_increment);
             this.Controls.Add(this.textBox_name);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.categoryTypesList);
             this.Controls.Add(this.lbl_categoryType);
             this.Name = "AddCategoryForm";
             this.Text = "AddCategory";
@@ -205,7 +205,7 @@ namespace WinFormsUI
         #endregion
 
         private System.Windows.Forms.Label lbl_categoryType;
-        internal System.Windows.Forms.ComboBox comboBox1;
+        internal System.Windows.Forms.ComboBox categoryTypesList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_name;
         private System.Windows.Forms.TextBox textBox_increment;

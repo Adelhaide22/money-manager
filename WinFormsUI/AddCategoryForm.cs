@@ -13,9 +13,9 @@ namespace WinFormsUI
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void categoryTypesList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = comboBox1.SelectedItem.ToString();
+            var selectedItem = categoryTypesList.SelectedItem.ToString();
 
             var name = textBox_name.Text;
             var increment = int.TryParse(textBox_increment.Text, out int i) ? i : 0;
@@ -39,7 +39,7 @@ namespace WinFormsUI
                 textBox_categories.PlaceholderText = string.Empty;
 
                 textBox_rules.ScrollBars = ScrollBars.Vertical;
-                textBox_rules.PlaceholderText = DisplayManager.DisplayRules(new List<Rule>() { new Rule("*.", "*", "*.", "*.")});
+                textBox_rules.PlaceholderText = DisplayManager.ConvertRulesToTextBoxFormat(new List<Rule>() { new Rule("*.", "*", "*.", "*.")});
             }
             if (selectedItem == nameof(CompositeCategory))
             {
@@ -50,7 +50,7 @@ namespace WinFormsUI
                 textBox_rules.PlaceholderText = string.Empty;
 
                 textBox_categories.ScrollBars = ScrollBars.Vertical;
-                textBox_categories.PlaceholderText = DisplayManager.DisplayList(new List<string>() { "[Auto] CategoryName1", "[Auto] CategoryName2" });
+                textBox_categories.PlaceholderText = DisplayManager.ConvertListToTextBoxFormat(new List<string>() { "[Auto] CategoryName1", "[Auto] CategoryName2" });
             }
         }
 
@@ -69,14 +69,14 @@ namespace WinFormsUI
             }
             if (textBox_rules.Enabled)
             {
-                var rules = DisplayManager.ReadRules(textBox_rules.Text);
+                var rules = DisplayManager.ConvertTextBoxTextToRules(textBox_rules.Text);
                 var regexCategory = new RegexCategory(name, rules, increment, capacity);
 
                 StateManager.UpdateStateWithNewCategory(regexCategory);
             }
             if (textBox_categories.Enabled)
             {
-                var categories = DisplayManager.ReadList(textBox_categories.Text);
+                var categories = DisplayManager.ConvertTextBoxTextToList(textBox_categories.Text);
                 var compositeCategory = new CompositeCategory(name, increment, capacity, categories);
 
                 StateManager.UpdateStateWithNewCategory(compositeCategory);

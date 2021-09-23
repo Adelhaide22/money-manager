@@ -25,17 +25,17 @@ namespace WinFormsUI
             };
         }
 
-        public static IReadOnlyCollection<string> ReadList(string text)
+        public static IReadOnlyCollection<string> ConvertTextBoxTextToList(string text)
         {
             return text.Split("\r\n");
         }
 
-        public static string DisplayList(IReadOnlyCollection<string> text)
+        public static string ConvertListToTextBoxFormat(IReadOnlyCollection<string> text)
         {
             return string.Join(Environment.NewLine, text);
         }
 
-        internal static string DisplayRules(IReadOnlyCollection<Rule> rules)
+        internal static string ConvertRulesToTextBoxFormat(IReadOnlyCollection<Rule> rules)
         {
             var sb = new StringBuilder();
             var index = 1;
@@ -53,7 +53,7 @@ namespace WinFormsUI
             return sb.ToString();
         }
 
-        internal static IReadOnlyCollection<Rule> ReadRules(string text)
+        internal static IReadOnlyCollection<Rule> ConvertTextBoxTextToRules(string text)
         {
             var strings = text.Split("\r\n").Where(s => !string.IsNullOrEmpty(s)).Where(c => !c.StartsWith("Rule")).ToList();
             var rules = new List<Rule>();

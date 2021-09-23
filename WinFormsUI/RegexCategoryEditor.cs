@@ -21,7 +21,7 @@ namespace WinFormsUI
             textBox_rcapacity.Text = regexCategory.Capacity.ToString();
             textBox_rincrement.Text = regexCategory.Increment.ToString();
             textBox_rname.Text = regexCategory.Name.ToString();
-            textBox_rules.Text = DisplayManager.DisplayRules(regexCategory.Rules);
+            textBox_rules.Text = DisplayManager.ConvertRulesToTextBoxFormat(regexCategory.Rules);
             ShowDialog();
         }
 
@@ -30,7 +30,7 @@ namespace WinFormsUI
             var name = textBox_rname.Text;
             var increment = int.TryParse(textBox_rincrement.Text, out int i) ? i : 0;
             var capacity = int.TryParse(textBox_rcapacity.Text, out int c) ? c : 0;
-            var rules = DisplayManager.ReadRules(textBox_rules.Text);
+            var rules = DisplayManager.ConvertTextBoxTextToRules(textBox_rules.Text);
 
             return new RegexCategory(name, rules, increment, capacity) as T;
         }

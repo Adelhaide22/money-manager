@@ -21,7 +21,7 @@ namespace WinFormsUI
             textBox_ccapacity.Text = compositeCategory.Capacity.ToString();
             textBox_cincrement.Text = compositeCategory.Increment.ToString();
             textBox_cname.Text = compositeCategory.Name.ToString();
-            textBox_ccategories.Text = DisplayManager.DisplayList(compositeCategory.Categories);
+            textBox_ccategories.Text = DisplayManager.ConvertListToTextBoxFormat(compositeCategory.Categories);
             ShowDialog();
         }
 
@@ -30,7 +30,7 @@ namespace WinFormsUI
             var name = textBox_cname.Text;
             var increment = int.TryParse(textBox_cincrement.Text, out int i) ? i : 0;
             var capacity = int.TryParse(textBox_ccapacity.Text, out int c) ? c : 0;
-            var categories = DisplayManager.ReadList(textBox_ccategories.Text);
+            var categories = DisplayManager.ConvertTextBoxTextToList(textBox_ccategories.Text);
 
             return new CompositeCategory(name, increment, capacity, categories) as T;
         }
