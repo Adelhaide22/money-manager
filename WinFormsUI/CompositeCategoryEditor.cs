@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace WinFormsUI
 {
     public partial class CompositeCategoryEditorForm : Form
-    { 
+    {
         public CompositeCategoryEditorForm()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace WinFormsUI
             ShowDialog();
         }
 
-        public CompositeCategory? ReadEditedCategory()
+        public CompositeCategory ReadEditedCategory()
         {
             var name = textBox_cname.Text;
             var increment = int.TryParse(textBox_cincrement.Text, out int i) ? i : 0;
@@ -34,10 +34,7 @@ namespace WinFormsUI
         private void btn_SaveCCategory_Click(object sender, EventArgs e)
         {
             var newCategory = ReadEditedCategory();
-            if (newCategory is not null)
-            {
-                StateManager.UpdateCategory(newCategory);
-            }
+            StateManager.UpdateCategory(newCategory);
             Close();
         }
 
@@ -46,10 +43,7 @@ namespace WinFormsUI
             if (e.KeyChar == (char)Keys.Enter)
             {
                 var newCategory = ReadEditedCategory();
-                if (newCategory is not null)
-                {
-                    StateManager.UpdateCategory(newCategory);
-                }
+                StateManager.UpdateCategory(newCategory);
                 Close();
             }
         }
@@ -57,10 +51,7 @@ namespace WinFormsUI
         private void button_delete_Click(object sender, EventArgs e)
         {
             var newCategory = ReadEditedCategory();
-            if (newCategory is not null)
-            {
-                StateManager.DeleteCategory(newCategory);
-            }
+            StateManager.DeleteCategory(newCategory);
         }
     }
 }

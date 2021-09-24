@@ -21,7 +21,7 @@ namespace WinFormsUI
             ShowDialog();
         }
 
-        public AutoCategory? ReadEditedCategory()
+        public AutoCategory ReadEditedCategory()
         {
             var capacity = int.TryParse(textBox_acapacity.Text, out int c) ? c : 0;
             var category = textBox_acategory.Text;
@@ -34,11 +34,7 @@ namespace WinFormsUI
         private void btn_SaveACategory_Click(object sender, EventArgs e)
         {
             var newCategory = ReadEditedCategory();
-            if (newCategory is not null)
-            {
-                StateManager.UpdateCategory(newCategory);
-            }
-
+            StateManager.UpdateCategory(newCategory);
             Close();
         }
 
@@ -47,22 +43,15 @@ namespace WinFormsUI
             if (e.KeyChar == (char)Keys.Enter)
             {
                 var newCategory = ReadEditedCategory();
-                if (newCategory is not null)
-                {
-                    StateManager.UpdateCategory(newCategory);
-                }
-
+                StateManager.UpdateCategory(newCategory);
                 Close();
             }
         }
 
         private void button_delete_Click(object sender, EventArgs e)
         {
-            var newCategory = ReadEditedCategory();
-            if (newCategory is not null)
-            {
-                StateManager.DeleteCategory(newCategory);
-            }
+            var newCategory = ReadEditedCategory();            
+            StateManager.DeleteCategory(newCategory);
         }
     }
 }
