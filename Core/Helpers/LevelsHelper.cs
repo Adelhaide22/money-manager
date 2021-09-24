@@ -1,6 +1,4 @@
-﻿using Core.Categories;
-
-namespace Core.Helpers
+﻿namespace Core.Helpers
 {
     public static class LevelsHelper
     {

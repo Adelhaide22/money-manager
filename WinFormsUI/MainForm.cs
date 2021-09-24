@@ -20,7 +20,7 @@ namespace WinFormsUI
 
         public MainForm() => InitializeComponent();
         private event Action OnFilteringUpdated = () => { };
-        private IRepository repository = new Repository();
+        private IRepository repository = new FileRepository();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -46,8 +46,9 @@ namespace WinFormsUI
 
             dateTimePickerStart.Value = new DateTime(DateTime.Now.Year - 1, DateTime.Now.Month, DateTime.Now.Day);
             dateTimePickerEnd.Value = DateTime.Now.Date;
+            txtboxSmoothingRatio_TextChanged(sender, e);
 
-            repository = new Repository();
+            repository = new FileRepository();
 
             LoadCategories();
             LoadTransactions();
@@ -61,11 +62,18 @@ namespace WinFormsUI
             State.OnStateChanged += RefreshChart;
 
             repository.SaveUpdatedTransactions();
-            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).ToList());
+            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).Cast<AutoCategory>().AsEnumerable());
             
             RefreshCategories();
             RefreshList();
             RefreshChart();
+        }
+
+        private void MainForm_Closing(object sender, EventArgs e)
+        {
+            repository.SaveAutoCategories(State.Instance.Categories.Where(c => c is AutoCategory).Cast<AutoCategory>().AsEnumerable());
+            repository.SaveCompositeCategories(State.Instance.Categories.Where(c => c is CompositeCategory).Cast<CompositeCategory>().AsEnumerable());
+            repository.SaveRegexCategories(State.Instance.Categories.Where(c => c is RegexCategory).Cast<RegexCategory>().AsEnumerable());
         }
 
         private void RestoreScrollPosition()
@@ -119,7 +127,7 @@ namespace WinFormsUI
                 var todayRelative = todayData / c.Capacity;
 
                 var level = LevelsHelper.GetLevel(todayRelative);
-                categoryWithPrefix = DisplayManager.GetPrefix(level);
+                categoryWithPrefix = DisplayManager.GetPrefix(level) + c.Name;
 
                 clbCategories.Items.Add(categoryWithPrefix);
 
@@ -264,6 +272,46 @@ namespace WinFormsUI
         private void chboxAllCategories_CheckedChanged(object sender, EventArgs e)
         {
             RefreshList();
+        }
+
+        private void button_addCategory_Click(object sender, EventArgs e)
+        {
+            var form = new AddCategoryForm();
+            form.categoryTypesList.Items.AddRange(new string[] { nameof(AutoCategory), nameof(RegexCategory), nameof(CompositeCategory)});
+            form.ShowDialog();
+
+            RefreshCategories();
+        }
+
+        private void button_editSelectedCategory_Click(object sender, EventArgs e)
+        {
+            var categoriesToEdit = clbCategories.CheckedIndices
+                .Cast<int>()
+                .Select(i => _orderedCategories[i])
+                .ToList();
+
+            foreach (var category in categoriesToEdit)
+            {
+                switch (category)
+                {
+                    case AutoCategory autoCategory:
+                        var autoEditor = new AutoCategoryEditorForm();                        
+                        autoEditor.FillInformation(autoCategory);
+                        break;
+                    case RegexCategory regexCategory:
+                        var regexEditor = new RegexCategoryEditorForm();                        
+                        regexEditor.FillInformation(regexCategory);
+                        break;
+                    case CompositeCategory compositeCategory:
+                        var compositeEditor = new CompositeCategoryEditorForm();
+                        compositeEditor.FillInformation(compositeCategory);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            RefreshCategories();
         }
 
         private void lb_DoubleClick(object sender, EventArgs e)

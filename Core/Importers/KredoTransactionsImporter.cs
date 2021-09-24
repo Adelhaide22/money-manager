@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Core.Importers
@@ -29,12 +30,13 @@ namespace Core.Importers
 
                 for (var i = 0; i < pagesAmount; i++)
                 {
+                    var regex = new Regex(@"(Номер картки)+|(Заблоковані операції)+|(Разом:)+|(Разом за період:)+");
+
                     var listener = new FilteredEventListener();
                     var extractionStrategy = listener.AttachEventListener(new SimpleTextExtractionStrategy());
 
                     var actualText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i + 1), extractionStrategy)
                         .Split("\n").ToList();
-
 
                     actualText = actualText.TakeWhile(s => s != "Заблоковані операції").ToList();
 
@@ -45,9 +47,9 @@ namespace Core.Importers
                         cardNumber = actualText[0];
                         actualText = actualText.Skip(1).ToList();
                     }
-                                        
-                    actualText.RemoveAll(a => a.Contains("Разом"));
-                    
+
+                    actualText.RemoveAll(a => regex.IsMatch(a));
+
                     while (actualText.Any())
                     {
                         var transactionData = actualText.Skip(2).TakeWhile(s => !Date.TryParse(s, out var d)).ToArray();
