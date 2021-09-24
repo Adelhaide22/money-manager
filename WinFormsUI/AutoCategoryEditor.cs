@@ -5,19 +5,15 @@ using System.Windows.Forms;
 
 namespace WinFormsUI
 {
-    public partial class AutoCategoryEditorForm : Form, ICategoryEditor
+    public partial class AutoCategoryEditorForm : Form
     {
         public AutoCategoryEditorForm()
         {
             InitializeComponent();
         }
 
-        public void FillInformation<T>(T category) where T : Category
+        public void FillInformation(AutoCategory autoCategory)
         {
-            if (category is not AutoCategory autoCategory)
-            {
-                throw new ArgumentNullException("Argument type is not AutoCategory");
-            }
             textBox_acapacity.Text = autoCategory.Capacity.ToString();
             textBox_aincrement.Text = autoCategory.Increment.ToString();
             textBox_aname.Text = autoCategory.Name.ToString();
@@ -25,19 +21,19 @@ namespace WinFormsUI
             ShowDialog();
         }
 
-        public T? ReadEditedCategory<T>() where T : Category
+        public AutoCategory? ReadEditedCategory()
         {
             var capacity = int.TryParse(textBox_acapacity.Text, out int c) ? c : 0;
             var category = textBox_acategory.Text;
             var name = textBox_aname.Text;
             var increment = int.TryParse(textBox_aincrement.Text, out int i) ? i : 0;
 
-            return new AutoCategory(name, increment, capacity, category) as T;
+            return new AutoCategory(name, increment, capacity, category);
         }
 
         private void btn_SaveACategory_Click(object sender, EventArgs e)
         {
-            var newCategory = ReadEditedCategory<AutoCategory>();
+            var newCategory = ReadEditedCategory();
             if (newCategory is not null)
             {
                 StateManager.UpdateCategory(newCategory);
@@ -50,7 +46,7 @@ namespace WinFormsUI
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var newCategory = ReadEditedCategory<AutoCategory>();
+                var newCategory = ReadEditedCategory();
                 if (newCategory is not null)
                 {
                     StateManager.UpdateCategory(newCategory);
@@ -62,7 +58,7 @@ namespace WinFormsUI
 
         private void button_delete_Click(object sender, EventArgs e)
         {
-            var newCategory = ReadEditedCategory<AutoCategory>();
+            var newCategory = ReadEditedCategory();
             if (newCategory is not null)
             {
                 StateManager.DeleteCategory(newCategory);

@@ -5,19 +5,15 @@ using System.Windows.Forms;
 
 namespace WinFormsUI
 {
-    public partial class CompositeCategoryEditorForm : Form, ICategoryEditor
-    {
+    public partial class CompositeCategoryEditorForm : Form
+    { 
         public CompositeCategoryEditorForm()
         {
             InitializeComponent();
         }
 
-        public void FillInformation<T>(T category) where T : Category
+        public void FillInformation(CompositeCategory compositeCategory)
         {
-            if (category is not CompositeCategory compositeCategory)
-            {
-                throw new ArgumentNullException("Argument type is not CompositeCategory");
-            }
             textBox_ccapacity.Text = compositeCategory.Capacity.ToString();
             textBox_cincrement.Text = compositeCategory.Increment.ToString();
             textBox_cname.Text = compositeCategory.Name.ToString();
@@ -25,19 +21,19 @@ namespace WinFormsUI
             ShowDialog();
         }
 
-        public T? ReadEditedCategory<T>() where T : Category
+        public CompositeCategory? ReadEditedCategory()
         {
             var name = textBox_cname.Text;
             var increment = int.TryParse(textBox_cincrement.Text, out int i) ? i : 0;
             var capacity = int.TryParse(textBox_ccapacity.Text, out int c) ? c : 0;
             var categories = DisplayManager.ConvertTextBoxTextToList(textBox_ccategories.Text);
 
-            return new CompositeCategory(name, increment, capacity, categories) as T;
+            return new CompositeCategory(name, increment, capacity, categories);
         }
 
         private void btn_SaveCCategory_Click(object sender, EventArgs e)
         {
-            var newCategory = ReadEditedCategory<CompositeCategory>();
+            var newCategory = ReadEditedCategory();
             if (newCategory is not null)
             {
                 StateManager.UpdateCategory(newCategory);
@@ -49,7 +45,7 @@ namespace WinFormsUI
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                var newCategory = ReadEditedCategory<CompositeCategory>();
+                var newCategory = ReadEditedCategory();
                 if (newCategory is not null)
                 {
                     StateManager.UpdateCategory(newCategory);
@@ -60,7 +56,7 @@ namespace WinFormsUI
 
         private void button_delete_Click(object sender, EventArgs e)
         {
-            var newCategory = ReadEditedCategory<CompositeCategory>();
+            var newCategory = ReadEditedCategory();
             if (newCategory is not null)
             {
                 StateManager.DeleteCategory(newCategory);

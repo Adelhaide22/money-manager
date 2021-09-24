@@ -292,15 +292,32 @@ namespace WinFormsUI
 
             foreach (var category in categoriesToEdit)
             {
-                var editor = category switch
+                switch (category)
                 {
-                    AutoCategory => (ICategoryEditor) new AutoCategoryEditorForm(),
-                    RegexCategory => new RegexCategoryEditorForm(),
-                    CompositeCategory => new CompositeCategoryEditorForm(),
-                    _ => throw new NotImplementedException(),
-                };
-
-                editor.FillInformation(category);
+                    case AutoCategory:
+                        var autoEditor = new AutoCategoryEditorForm();
+                        if (category is AutoCategory autoCategory)
+                        {
+                            autoEditor.FillInformation(autoCategory);
+                        }
+                        break;
+                    case RegexCategory:
+                        var regexEditor = new RegexCategoryEditorForm();
+                        if (category is RegexCategory regexCategory)
+                        {
+                            regexEditor.FillInformation(regexCategory);
+                        }
+                        break;
+                    case CompositeCategory:
+                        var compositeEditor = new CompositeCategoryEditorForm();
+                        if (category is CompositeCategory compositeCategory)
+                        {
+                            compositeEditor.FillInformation(compositeCategory);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
 
             RefreshCategories();
