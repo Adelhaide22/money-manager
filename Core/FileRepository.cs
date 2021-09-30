@@ -21,7 +21,8 @@ namespace Core
 
         public void SaveUpdatedTransactions()
         {
-            File.WriteAllText(TransactionsFileName, State.Instance.SaveTransactionsToJson());
+            var json = JsonConvert.SerializeObject(State.Instance.Transactions, Formatting.Indented);
+            File.WriteAllText(TransactionsFileName, json);
         }
 
         public RegexCategory[] GetRegexCategories()

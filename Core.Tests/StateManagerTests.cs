@@ -44,7 +44,7 @@ namespace Core.Tests
         [Order(2)]
         public void Save()
         {
-            var t1 = State.Instance.SaveTransactionsToJson();
+            var t1 = JsonConvert.SerializeObject(State.Instance.Transactions, Formatting.Indented);
             var oldState = State.Instance;
             StateManager.LoadTransactions(Enumerable.Empty<(string, Stream)>(), JsonConvert.DeserializeObject<ICollection<Transaction>>(t1));
 
