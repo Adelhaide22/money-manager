@@ -314,6 +314,13 @@ namespace WinFormsUI
             RefreshCategories();
         }
 
+        private void button_addTransaction_Click(object sender, EventArgs e)
+        {
+            var form = new CreateTransactionForm();
+            form.categoriesList.Items.AddRange(State.Instance.Categories.ToArray());
+            form.ShowDialog();
+        }
+
         private void lb_DoubleClick(object sender, EventArgs e)
         {
             _listPosition = lbTransactions.SelectedIndex;
