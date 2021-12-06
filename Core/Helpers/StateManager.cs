@@ -40,6 +40,10 @@ namespace Core
         {
             State.Instance = new State(State.Instance.Categories.Concat(new[] { category }).ToHashSet(), State.Instance.Transactions.ToHashSet());
         }
+        public static void UpdateStateWithNewTransaction(Transaction transaction)
+        {
+            State.Instance = new State(State.Instance.Categories.ToHashSet(), State.Instance.Transactions.Concat(new[] { transaction }).ToHashSet());
+        }
 
         public static void LoadTransactions(IEnumerable<(string key, Stream stream)> files, IEnumerable<Transaction> modifiedTransactions)
         {
