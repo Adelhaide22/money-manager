@@ -156,6 +156,7 @@ namespace WinFormsUI
             this.lbTransactions.Size = new System.Drawing.Size(1165, 708);
             this.lbTransactions.TabIndex = 1;
             this.lbTransactions.DoubleClick += new System.EventHandler(this.lb_DoubleClick);
+            this.lbTransactions.SelectedIndexChanged += new System.EventHandler(this.lb_Select);
             // 
             // dateTimePickerEnd
             // 

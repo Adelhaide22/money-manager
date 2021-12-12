@@ -78,7 +78,7 @@ namespace WinFormsUI
 
         private void RestoreScrollPosition()
         {
-            lbTransactions.SelectedIndex = _listPosition == 0 ? -1 : _listPosition;
+            lbTransactions.SelectedIndex = _listPosition < lbTransactions.Items.Count ? _listPosition : 0;
         }
 
         private void LoadCategories()
@@ -333,6 +333,10 @@ namespace WinFormsUI
             transactionEditor.txtboxCategory.Text = transaction.Category;
             transactionEditor.txtboxDescription.Text = transaction.Description;
             transactionEditor.ShowDialog();
+        }
+        private void lb_Select(object sender, EventArgs e)
+        {
+            _listPosition = lbTransactions.SelectedIndex;
         }
     }
 }
