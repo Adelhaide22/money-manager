@@ -9,6 +9,8 @@ namespace WinFormsUI
 {
     public partial class CreateTransactionForm : Form
     {
+        private Date _date;
+
         public CreateTransactionForm()
         {
             InitializeComponent();
@@ -16,7 +18,7 @@ namespace WinFormsUI
 
         private void date_ValueChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            _date = Date.TryParse(monthCalendar.Value.ToString(), out Date d) ? d : Date.Today;
         }
 
         public Transaction CreateTransaction()
@@ -26,7 +28,7 @@ namespace WinFormsUI
                 .ToArray();
 
             var cardNumber = textBox_cardnumber.Text;
-            var date = Date.TryParse(monthCalendar.Value.ToString(), out Date d) ? d : Date.Today;
+            var date = _date;
             var amount = new Money(double.TryParse(textBox_amount.Text, out double a) ? a : 0, Currency.UAH);
             var description = textBox_description.Text;
             var category = _orderedCategories[categoriesList.SelectedIndex].Name;

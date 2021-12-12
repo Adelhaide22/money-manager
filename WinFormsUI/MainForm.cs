@@ -317,7 +317,7 @@ namespace WinFormsUI
         private void button_addTransaction_Click(object sender, EventArgs e)
         {
             var form = new CreateTransactionForm();
-            form.categoriesList.Items.AddRange(State.Instance.Categories.Select(c => c.Name).ToArray());
+            form.categoriesList.Items.AddRange(_orderedCategories.OfType<CompositeCategory>().Select(c => c.Name).ToArray());
             form.ShowDialog();
         }
 
