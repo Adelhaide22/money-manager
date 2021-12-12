@@ -40,6 +40,7 @@ namespace Core
         {
             State.Instance = new State(State.Instance.Categories.Concat(new[] { category }).ToHashSet(), State.Instance.Transactions.ToHashSet());
         }
+
         public static void UpdateStateWithNewTransaction(Transaction transaction)
         {
             State.Instance = new State(State.Instance.Categories.ToHashSet(), State.Instance.Transactions.Concat(new[] { transaction }).ToHashSet());
@@ -87,6 +88,12 @@ namespace Core
         {
             var categories = State.Instance.Categories.Where(c => !c.Equals(category)).ToHashSet();
             State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
+        }
+
+        public static void DeleteTransaction(Transaction transaction)
+        {
+            var transactions = State.Instance.Transactions.Where(c => !c.Equals(transaction)).ToHashSet();
+            State.Instance = new State(State.Instance.Categories.ToHashSet(), transactions);
         }
 
         public static void UpdateTransaction(Transaction transaction)
