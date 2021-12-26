@@ -79,7 +79,6 @@ namespace WinFormsUI
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.Size = new System.Drawing.Size(259, 23);
             this.monthCalendar.TabIndex = 3;
-            this.monthCalendar.ValueChanged += new System.EventHandler(this.date_ValueChanged);
             // 
             // label3
             // 

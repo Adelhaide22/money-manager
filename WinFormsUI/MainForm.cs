@@ -334,6 +334,7 @@ namespace WinFormsUI
             transactionEditor.txtboxDescription.Text = transaction.Description;
             transactionEditor.ShowDialog();
         }
+
         private void lb_Select(object sender, EventArgs e)
         {
             _listPosition = lbTransactions.SelectedIndex;
