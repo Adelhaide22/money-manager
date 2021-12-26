@@ -24,6 +24,16 @@ namespace Core
             State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
         }
 
+        public static void UpdateStateWithNewCategory<T>(T category) where T: Category
+        {
+            State.Instance = new State(State.Instance.Categories.Concat(new[] { category }).ToHashSet(), State.Instance.Transactions.ToHashSet());
+        }
+
+        public static void UpdateStateWithNewTransaction(Transaction transaction)
+        {
+            State.Instance = new State(State.Instance.Categories.ToHashSet(), State.Instance.Transactions.Concat(new[] { transaction }).ToHashSet());
+        }
+
         public static void LoadTransactions(IEnumerable<(string key, Stream stream)> files, IEnumerable<Transaction> modifiedTransactions)
         {
             var newTransactions = new List<Transaction>();
@@ -62,15 +72,16 @@ namespace Core
             }
         }
 
-        public static void UpdateStateWithNewCategory<T>(T category) where T: Category
-        {
-            State.Instance = new State(State.Instance.Categories.Concat(new[] { category }).ToHashSet(), State.Instance.Transactions.ToHashSet());
-        }
-
         public static void DeleteCategory(Category category)
         {
             var categories = State.Instance.Categories.Where(c => !c.Equals(category)).ToHashSet();
             State.Instance = new State(categories, State.Instance.Transactions.ToHashSet());
+        }
+
+        public static void DeleteTransaction(Transaction transaction)
+        {
+            var transactions = State.Instance.Transactions.Where(c => !c.Equals(transaction)).ToHashSet();
+            State.Instance = new State(State.Instance.Categories.ToHashSet(), transactions);
         }
 
         public static void UpdateTransaction(Transaction transaction)

@@ -54,11 +54,13 @@ namespace WinFormsUI
             this.clbCategories = new System.Windows.Forms.CheckedListBox();
             this.button_addCategory = new System.Windows.Forms.Button();
             this.button_editSelectedCategory = new System.Windows.Forms.Button();
+            this.button_addTransaction = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabSmoothedTrends.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSeriesSmoothed)).BeginInit();
             this.tabCumulativeTrends.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSeriesCumulative)).BeginInit();
+
             this.tabLedger.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +87,7 @@ namespace WinFormsUI
             this.tabSmoothedTrends.TabIndex = 1;
             this.tabSmoothedTrends.Text = "Smoothed Trends";
             this.tabSmoothedTrends.UseVisualStyleBackColor = true;
-            // 
+            //
             // chartSeriesSmoothed
             // 
             chartArea1.Name = "Main Chart Area";
@@ -154,6 +156,7 @@ namespace WinFormsUI
             this.lbTransactions.Size = new System.Drawing.Size(1165, 708);
             this.lbTransactions.TabIndex = 1;
             this.lbTransactions.DoubleClick += new System.EventHandler(this.lb_DoubleClick);
+            this.lbTransactions.SelectedIndexChanged += new System.EventHandler(this.lb_Select);
             // 
             // dateTimePickerEnd
             // 
@@ -260,11 +263,22 @@ namespace WinFormsUI
             this.button_editSelectedCategory.UseVisualStyleBackColor = true;
             this.button_editSelectedCategory.Click += new System.EventHandler(this.button_editSelectedCategory_Click);
             // 
+            // button_addTransaction
+            // 
+            this.button_addTransaction.Location = new System.Drawing.Point(14, 658);
+            this.button_addTransaction.Name = "button_addTransaction";
+            this.button_addTransaction.Size = new System.Drawing.Size(108, 23);
+            this.button_addTransaction.TabIndex = 18;
+            this.button_addTransaction.Text = "Add transaction";
+            this.button_addTransaction.UseVisualStyleBackColor = true;
+            this.button_addTransaction.Click += new System.EventHandler(this.button_addTransaction_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 786);
+            this.Controls.Add(this.button_addTransaction);
             this.Controls.Add(this.button_editSelectedCategory);
             this.Controls.Add(this.button_addCategory);
             this.Controls.Add(this.clbCategories);
@@ -279,6 +293,7 @@ namespace WinFormsUI
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "MainForm";
             this.Text = "Money Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_Closing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.FormClosing += new FormClosingEventHandler(this.MainForm_Closing);
             this.tabs.ResumeLayout(false);
@@ -309,6 +324,7 @@ namespace WinFormsUI
         private System.Windows.Forms.TabPage tabSmoothedTrends;
         private Button button_addCategory;
         private Button button_editSelectedCategory;
+        private Button button_addTransaction;
 
         #endregion
     }

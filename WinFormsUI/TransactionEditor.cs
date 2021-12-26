@@ -14,30 +14,36 @@ namespace WinFormsUI
             InitializeComponent();
         }
 
-        public void SaveEditedTransaction()
+        public Transaction ReadEditedTransaction()
         {
             var cardNumber = txtboxCardNumber.Text;
             var category = txtboxCategory.Text;
             var description = txtboxDescription.Text;
 
-            var newTransaction = new Transaction(cardNumber, transaction.Date, transaction.Amount, description, category, transaction.GetHashCode());
-
-            StateManager.UpdateTransaction(newTransaction);
+            return new Transaction(cardNumber, transaction.Date, transaction.Amount, description, category, transaction.GetHashCode());
         }
 
         private void CheckEnterKeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                SaveEditedTransaction();
+                var newTransaction = ReadEditedTransaction();
+                StateManager.UpdateTransaction(newTransaction);
                 Close();
             }
         }
 
         private void btnSave_Clicked(object sender, EventArgs e)
         {
-            SaveEditedTransaction();
+            var newTransaction = ReadEditedTransaction();
+            StateManager.UpdateTransaction(newTransaction);
             Close();
         }
+
+        private void button_delete_Click(object sender, EventArgs e)
+        {
+            var newTransaction = ReadEditedTransaction();
+            StateManager.DeleteTransaction(newTransaction);
+        } 
     }
 }

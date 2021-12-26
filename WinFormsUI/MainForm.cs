@@ -78,7 +78,7 @@ namespace WinFormsUI
 
         private void RestoreScrollPosition()
         {
-            lbTransactions.SelectedIndex = _listPosition == 0 ? -1 : _listPosition;
+            lbTransactions.SelectedIndex = _listPosition < lbTransactions.Items.Count ? _listPosition : 0;
         }
 
         private void LoadCategories()
@@ -314,6 +314,13 @@ namespace WinFormsUI
             RefreshCategories();
         }
 
+        private void button_addTransaction_Click(object sender, EventArgs e)
+        {
+            var form = new CreateTransactionForm();
+            form.categoriesList.Items.AddRange(_orderedCategories.OfType<CompositeCategory>().Select(c => c.Name).ToArray());
+            form.ShowDialog();
+        }
+
         private void lb_DoubleClick(object sender, EventArgs e)
         {
             _listPosition = lbTransactions.SelectedIndex;
@@ -326,6 +333,11 @@ namespace WinFormsUI
             transactionEditor.txtboxCategory.Text = transaction.Category;
             transactionEditor.txtboxDescription.Text = transaction.Description;
             transactionEditor.ShowDialog();
+        }
+
+        private void lb_Select(object sender, EventArgs e)
+        {
+            _listPosition = lbTransactions.SelectedIndex;
         }
     }
 }
