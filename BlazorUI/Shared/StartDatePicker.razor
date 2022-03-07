@@ -1,19 +1,14 @@
-@using Core
+@using System
 <div class="m-3" style="color: #ffffff">
-    <label>Start Date:</label>
-    <EditForm EditContext="@_editContext">
-        <InputDate @bind-Value="StartDate"/>
-    </EditForm>
+    <label>Interval:</label>
+
+    <DatePicker TValue="DateOnly?" Dates="StartDate, EndDate" InputMode="DateInputMode.Date" @ref="@datePicker" SelectionMode="DateInputSelectionMode.Range" />
 </div>
 
 @code{
     [Parameter]
-    public Date StartDate { get; set; }
+    public DatePicker<DateOnly?> datePicker { get; set; }
 
-    private EditContext _editContext;
-
-    protected override void OnInitialized()
-    {
-        _editContext = new EditContext(StartDate);
-    }
+    public DateOnly? StartDate => datePicker.Dates?.FirstOrDefault<DateOnly?>() ?? DateOnly.MinValue;
+    public DateOnly? EndDate => datePicker.Dates?.LastOrDefault<DateOnly?>() ?? DateOnly.MinValue;
 }

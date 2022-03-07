@@ -1,14 +1,7 @@
 @using Category = BlazorUI.Data.Category
+
 <div class="m-3" style="color: #ffffff">
     <label>Categories:</label>
-    <EditForm Model="@CategoriesList">
-        @foreach (var c in CategoriesList)
-        {
-            <p>
-                <InputCheckbox @bind-Value="c.IsSelected"/> @c.Name
-            </p>
-        }
-    </EditForm>
 </div>
 
 @code
