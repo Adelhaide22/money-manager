@@ -1,0 +1,15 @@
+@using System
+<div class="m-3" style="color: #ffffff">
+    <label>Interval:</label>
+
+    <DatePicker TValue="DateOnly" Dates="@GetDatesList()" InputMode="DateInputMode.Date" @ref="@datePicker" SelectionMode="DateInputSelectionMode.Range" />
+</div>
+
+@code{
+    public DatePicker<DateOnly> datePicker { get; set; }
+
+    public DateOnly StartDate => datePicker?.Dates?.FirstOrDefault<DateOnly>() ?? DateOnly.FromDateTime(DateTime.Today.AddYears(-1));
+    public DateOnly EndDate => datePicker?.Dates?.LastOrDefault<DateOnly>() ?? DateOnly.FromDateTime(DateTime.Today);
+
+    IReadOnlyList<DateOnly> GetDatesList() => new List<DateOnly> { StartDate, EndDate };
+}
