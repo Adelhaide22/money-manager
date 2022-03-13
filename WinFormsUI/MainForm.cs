@@ -78,7 +78,7 @@ namespace WinFormsUI
 
         private void RestoreScrollPosition()
         {
-            lbTransactions.SelectedIndex = _listPosition < lbTransactions.Items.Count ? _listPosition : 0;
+            lbTransactions.SelectedIndex = _listPosition < lbTransactions.Items.Count ? _listPosition : -1;
         }
 
         private void LoadCategories()

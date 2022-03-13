@@ -1,18 +1,42 @@
-@using Category = BlazorUI.Data.Category
+@using Core.Categories
+@using Core
+
 <div class="m-3" style="color: #ffffff">
     <label>Categories:</label>
-    <EditForm Model="@CategoriesList">
-        @foreach (var c in CategoriesList)
-        {
-            <p>
-                <InputCheckbox @bind-Value="c.IsSelected"/> @c.Name
-            </p>
-        }
-    </EditForm>
+
+    @if (State.Instance.Categories.Any())
+    {
+        <ListGroup Mode="ListGroupMode.Selectable" @bind-SelectedItem="@SelectedItem" Color="Color.Primary">        
+            @foreach (var category in State.Instance.Categories)
+            {
+                <ListGroupItem Name="@category.Name">@category.Name</ListGroupItem>
+            }
+        </ListGroup>
+    }
+    else
+    {
+        <ListGroup Mode="ListGroupMode.Selectable" @bind-SelectedItem="@SelectedItem" Color="Color.Primary">        
+            @foreach (var category in TempCategories)
+            {
+                <ListGroupItem Name="@category.Name">@category.Name</ListGroupItem>
+            }
+        </ListGroup>
+    }
 </div>
 
 @code
 {
-    [Parameter]
-    public static IList<Category> CategoriesList { get; set; } = new List<Category>();
+    private string? SelectedItem { get; set; }
+
+    private List<Category> TempCategories = new() { 
+        new AutoCategory("Name#1", 1, 1, "Category1"), 
+        new AutoCategory("Name#2", 1, 1, "Category2"), 
+        new AutoCategory("Name#3", 1, 1, "Category3"), 
+    };
+
+    protected override void OnInitialized()
+    {        
+        SelectedItem ??= TempCategories.FirstOrDefault()?.Name;
+        //SelectedItem ??= State.Instance.Categories.FirstOrDefault()?.Name;
+    }
 }
